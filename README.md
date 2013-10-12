@@ -25,9 +25,12 @@ Setup
 Development
 -----------
 
-- Development on ``development`` branches
+- Server
  - Productive branch for server and docs is ``master``
+ - Development branch for server and docs is ``development``
+- Web app
  - Productive branch for web app is ``gh-pages``
+ - Development branch for web app is ``app-development``
 
 
 App Access
