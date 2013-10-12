@@ -33,4 +33,4 @@ Development
 App Access
 ----------
 
-The app should be available [here](http://miffels.github.io/SemPOI/).
+The app should be available [here](http://miffels.github.io/SemPOI/client/app/index.html).
