@@ -1,0 +1,11 @@
+{
+  "name": "SemPOI",
+  "description": "Exercise Group Project for the University of Mannheim Semantic Web Technologies autumn/winter semester 2013 course",
+  "devDependencies": {
+        "phantomjs" : "*",
+        "karma" : "*",
+        "karma-junit-reporter" : "*",
+        "karma-jasmine" : "*",
+        "karma-ng-scenario" : "*"
+    }
+}
