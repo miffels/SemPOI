@@ -28,3 +28,9 @@ Development
 - Development on ``development`` branches
  - Productive branch for server and docs is ``master``
  - Productive branch for web app is ``gh-pages``
+
+
+App Access
+----------
+
+The app should be available [here](http://miffels.github.io/SemPOI/).
