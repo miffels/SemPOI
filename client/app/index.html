@@ -1,35 +1,64 @@
-<!doctype html>
-<html lang="en" ng-app="semPoi">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>SemPOI</title>
-  <link rel="stylesheet" href="css/app.css"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Exercise Group Project for the University of Mannheim Semantic Web Technologies autumn/winter semester 2013 course">
+    <meta name="author" content="Christian Bikar">
+    <meta name="author" content="Michael Jess">
+    <title>SemPOI</title>
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
 </head>
-<body>
-  <ul class="menu">
-    <li><a href="#/view1">view1</a></li>
-    <li><a href="#/view2">view2</a></li>
-  </ul>
+<body ng-app="semPoi">
 
-  <div ui-view></div>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#/view1">About</a></li>
+                <li><a href="#/view2">Contact</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</div>
 
-  <div>Angular seed app: v<span app-version></span></div>
+<div class="container">
 
-  <!-- In production use:
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
-  -->
-  <script src="lib/angular/angular.js"></script>
-  <script src="lib/angular/angular-route.js"></script>
-  <script src="lib/angular/angular-ui-router.js"></script>
-  <script src="js/app.js"></script>
-  <script src="js/services/module.js"></script>
-  <script src="js/services/version.js"></script>
-  <script src="js/controllers/module.js"></script>
-  <script src="js/controllers/myCtrl1.js"></script>
-  <script src="js/controllers/myCtrl2.js"></script>
-  <script src="js/filters/module.js"></script>
-  <script src="js/filters/interpolate.js"></script>
-  <script src="js/directives/module.js"></script>
-  <script src="js/directives/appVersion.js"></script>
+    <div>
+        <h1>Bootstrap starter template</h1>
+        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+
+        <div ui-view></div>
+
+        <div>Angular seed app: v<span app-version></span></div>
+    </div>
+
+</div><!-- /.container -->
+
+<script src="lib/jQuery/jquery-2.0.3.js"></script>
+<script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+<script src="lib/angular/angular.js"></script>
+<script src="lib/angular/angular-route.js"></script>
+<script src="lib/angular/angular-ui-router.js"></script>
+<script src="js/app.js"></script>
+<script src="js/services/module.js"></script>
+<script src="js/services/version.js"></script>
+<script src="js/controllers/module.js"></script>
+<script src="js/controllers/myCtrl1.js"></script>
+<script src="js/controllers/myCtrl2.js"></script>
+<script src="js/filters/module.js"></script>
+<script src="js/filters/interpolate.js"></script>
+<script src="js/directives/module.js"></script>
+<script src="js/directives/appVersion.js"></script>
 </body>
 </html>
