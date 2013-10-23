@@ -20,6 +20,7 @@ Setup
 #### Recommended Plugins (eclipse)
 
 - [Infinitest for test automation](http://infinitest.github.io/)
+- [FindBugs for static code analysis](http://findbugs.cs.umd.edu/eclipse/) (set minimum rank to report to 20)
 
 
 Development
