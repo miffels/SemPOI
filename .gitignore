@@ -8,6 +8,7 @@
 # Eclipse configuration files
 .metadata/
 RemoteSystemsTempFiles/
+Servers/
 **/.settings/
 .project
 .classpath
