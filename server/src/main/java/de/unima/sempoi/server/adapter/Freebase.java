@@ -12,6 +12,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import de.unima.sempoi.server.settings.Settings;
+
 /**
  * code snippet um die freebase api zu testen und zu schauen wie die query aussehen muss
  * @author Christian
@@ -19,7 +21,7 @@ import com.google.gson.JsonParser;
  */
 public class Freebase {
 
-	private String key = "AIzaSyBFyuWLHzt1BoPQ6yqaMSBj4HrnWVFsSh4";
+	private String key = new Settings().getFreebaseApiKey();
 	
 
 	public ArrayList<String> readSightsOfCity(String city) {
