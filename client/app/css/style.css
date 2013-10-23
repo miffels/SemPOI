@@ -1,3 +1,12 @@
 body {
-  padding-top: 50px;
+  	padding-top: 70px;
+}
+
+google-map {
+	height: 100%;
+	display : block;
+}
+
+google-map img {
+	max-width: none;
 }

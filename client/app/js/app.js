@@ -7,7 +7,8 @@ angular.module('semPoi', [
         'semPoi.filters',
         'semPoi.services',
         'semPoi.directives',
-        'semPoi.controllers'
+        'semPoi.controllers',
+        'google-maps'
 ]).
 config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
         $stateProvider
