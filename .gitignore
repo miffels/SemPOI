@@ -1,0 +1,15 @@
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# Eclipse configuration files
+.metadata/
+RemoteSystemsTempFiles/
+.project
+.classpath
+
+# Maven output
+server/target/
