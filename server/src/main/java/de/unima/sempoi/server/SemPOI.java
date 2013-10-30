@@ -7,8 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import de.unima.sempoi.server.adapter.Freebase;
-
 /**
  * Servlet implementation class SemPOI
  */
@@ -26,8 +24,7 @@ public class SemPOI extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().write("It works!");
-		new Freebase().readSightsOfCity("Berlin");
+		response.getWriter().write(request.getParameter("city"));
 	}
 
 	/**

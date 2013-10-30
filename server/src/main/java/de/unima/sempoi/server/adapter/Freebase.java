@@ -8,9 +8,6 @@ import com.google.api.client.http.HttpRequestFactory;
 import com.google.api.client.http.HttpResponse;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 import de.unima.sempoi.server.settings.Settings;
 
@@ -32,17 +29,12 @@ public class Freebase {
 		try {
 			HttpTransport httpTransport = new NetHttpTransport();
 			HttpRequestFactory requestFactory = httpTransport.createRequestFactory();
-			JsonParser parser = new JsonParser();
 			GenericUrl url = new GenericUrl("https://www.googleapis.com/freebase/v1/mqlread");
 			url.put("query", query);
 			url.put("key", key);
 			HttpRequest request = requestFactory.buildGetRequest(url);
 			HttpResponse httpResponse = request.execute();
-			JsonObject response = (JsonObject) parser.parse(httpResponse.parseAsString());
-			JsonArray results = (JsonArray) response.get("result");
-			for (Object result : results) {
-				System.out.println(result);
-			}
+			System.out.println(httpResponse.parseAsString());
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
