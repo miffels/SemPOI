@@ -1,14 +1,19 @@
 package de.unima.sempoi.server.adapter;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.google.api.client.http.GenericUrl;
-import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestFactory;
-import com.google.api.client.http.HttpResponse;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.gson.Gson;
 
+import de.unima.sempoi.server.model.freebase.Attraction;
+import de.unima.sempoi.server.model.freebase.Response;
 import de.unima.sempoi.server.settings.Settings;
 
 /**
@@ -21,25 +26,31 @@ public class Freebase {
 	private String key = new Settings().getFreebaseApiKey();
 	
 
-	public ArrayList<String> readSightsOfCity(String city) {
+	public List<Attraction> readSightsOfCity(String city) {
 		city = city.trim();
 		city = city.replaceAll("\"", "").replaceAll("\\\\", "");
 		String query = "[{ \"id\": null, \"name\": \""+city+"\", \"type\": \"/travel/travel_destination\", \"tourist_attractions\": [{   \"id\": null,   \"name\": null }]}]";
 		
+		HttpTransport httpTransport = new NetHttpTransport();
+		HttpRequestFactory requestFactory = httpTransport.createRequestFactory();
+		GenericUrl url = new GenericUrl("https://www.googleapis.com/freebase/v1/mqlread");
+		url.put("query", query);
+		url.put("key", key);
+		
+		InputStream stream= null;
 		try {
-			HttpTransport httpTransport = new NetHttpTransport();
-			HttpRequestFactory requestFactory = httpTransport.createRequestFactory();
-			GenericUrl url = new GenericUrl("https://www.googleapis.com/freebase/v1/mqlread");
-			url.put("query", query);
-			url.put("key", key);
-			HttpRequest request = requestFactory.buildGetRequest(url);
-			HttpResponse httpResponse = request.execute();
-			System.out.println(httpResponse.parseAsString());
-		} catch (Exception ex) {
-			ex.printStackTrace();
+			stream = requestFactory
+					.buildGetRequest(url)
+					.execute()
+					.getContent();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return new ArrayList<Attraction>();
 		}
-		return null;
-
+		
+		return new Gson()
+				.fromJson(new InputStreamReader(stream), Response.class)
+				.getAttractions();
 	}
 
 	/**

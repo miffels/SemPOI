@@ -31,7 +31,8 @@ public class ParserTest {
 		Attraction attraction = response.getResults().get(0).getAttractions().get(0);
 		assertEquals("The first attraction should be Neue Kirche, Berlin",
 				"Neue Kirche, Berlin", attraction.getName());
-		assertEquals("The first attraction should have the id /en/deutscher_dom ", "/en/deutscher_dom", attraction.getId());
+		assertEquals("The first attraction should have the id /en/deutscher_dom ",
+				"/en/deutscher_dom", attraction.getId());
 	}
 
 }
