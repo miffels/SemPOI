@@ -1,12 +1,11 @@
-package de.unima.sempoi.server.adapter;
+package de.unima.sempoi.server.adapter.freebase;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-import com.google.api.client.googleapis.auth.clientlogin.ClientLogin.Response;
 import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpRequestFactory;
 import com.google.api.client.http.HttpResponseException;
@@ -14,6 +13,9 @@ import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.gson.Gson;
 
+import de.unima.sempoi.server.adapter.exception.AccessNotConfiguredException;
+import de.unima.sempoi.server.adapter.exception.ParameterException;
+import de.unima.sempoi.server.model.freebase.Response;
 import de.unima.sempoi.server.settings.Settings;
 
 /**
@@ -21,12 +23,11 @@ import de.unima.sempoi.server.settings.Settings;
  * @author Christian
  *
  */
-public class Freebase {
+public class FreebaseAdapter {
 
 	private String key = new Settings().getFreebaseApiKey();
-	
 
-	public List<Attraction> readSightsOfCity(String city) throws AccessNotConfiguredException, ParameterException {
+	public Set<String> readSightsOfCity(String city) throws AccessNotConfiguredException, ParameterException {
 		if(city == null || "".equals(city)) {
 			throw new ParameterException("Expected parameter 'city'");
 		}
@@ -49,19 +50,19 @@ public class Freebase {
 		} catch(HttpResponseException e) {
 			throw new AccessNotConfiguredException("Freebase access not configured");
 		} catch(IOException e) {
-			return new ArrayList<Attraction>();
+			return new HashSet<String>();
 		}
 		
 		return new Gson()
 				.fromJson(new InputStreamReader(stream), Response.class)
-				.getAttractions();
+				.getAttractionNames();
 	}
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Freebase f = new Freebase();
+		FreebaseAdapter f = new FreebaseAdapter();
 		try {
 			f.readSightsOfCity("Berlin");
 		} catch (ParameterException e) {

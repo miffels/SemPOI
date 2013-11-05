@@ -5,11 +5,11 @@
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
   <servlet>
-      <servlet-name>SemPOI</servlet-name>
-      <servlet-class>de.unima.sempoi.server.SemPOI</servlet-class>
+      <servlet-name>SemPoi</servlet-name>
+      <servlet-class>de.unima.sempoi.server.SemPoi</servlet-class>
   </servlet>
   <servlet-mapping>
-      <servlet-name>SemPOI</servlet-name>
+      <servlet-name>SemPoi</servlet-name>
       <url-pattern>/search</url-pattern>
   </servlet-mapping>
 </web-app>

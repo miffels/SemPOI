@@ -1,4 +1,4 @@
-package de.unima.sempoi.server.adapter;
+package de.unima.sempoi.server.adapter.exception;
 
 public class ParameterException extends Exception {
 
