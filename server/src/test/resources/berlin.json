@@ -1,0 +1,118 @@
+{
+    "result": [
+        {
+            "tourist_attractions": [
+                {
+                    "id": "/en/deutscher_dom",
+                    "name": "Neue Kirche, Berlin"
+                },
+                {
+                    "id": "/en/reichstag_dome",
+                    "name": "Reichstag dome"
+                },
+                {
+                    "id": "/en/potsdamer_platz",
+                    "name": "Potsdamer Platz"
+                },
+                {
+                    "id": "/en/berliner_dom",
+                    "name": "Berlin Cathedral"
+                },
+                {
+                    "id": "/en/kaiser_wilhelm_memorial_church",
+                    "name": "Kaiser Wilhelm Memorial Church"
+                },
+                {
+                    "id": "/en/franzosischer_dom",
+                    "name": "French Cathedral, Berlin"
+                },
+                {
+                    "id": "/en/deutsches_historisches_museum",
+                    "name": "Deutsches Historisches Museum"
+                },
+                {
+                    "id": "/en/gemaldegalerie_berlin",
+                    "name": "Gemäldegalerie, Berlin"
+                },
+                {
+                    "id": "/en/pergamon_museum",
+                    "name": "Pergamon Museum"
+                },
+                {
+                    "id": "/en/checkpoint_charlie",
+                    "name": "Checkpoint Charlie"
+                },
+                {
+                    "id": "/en/brandenburg_gate",
+                    "name": "Brandenburg Gate"
+                },
+                {
+                    "id": "/en/alexanderplatz",
+                    "name": "Alexanderplatz"
+                },
+                {
+                    "id": "/en/olympiastadion_berlin",
+                    "name": "Olympic Stadium"
+                },
+                {
+                    "id": "/en/charlottenburg_palace",
+                    "name": "Charlottenburg Palace"
+                },
+                {
+                    "id": "/en/deutsche_guggenheim_berlin",
+                    "name": "Deutsche Guggenheim, Berlin"
+                },
+                {
+                    "id": "/wikipedia/en_title/K$00E4the_Kollwitz_Museum_$0028Berlin$0029",
+                    "name": "Käthe Kollwitz Museum"
+                },
+                {
+                    "id": "/en/humboldt_museum",
+                    "name": "Museum für Naturkunde"
+                },
+                {
+                    "id": "/en/neue_nationalgalerie",
+                    "name": "Neue Nationalgalerie"
+                },
+                {
+                    "id": "/m/0j3q409",
+                    "name": "Collegienhaus"
+                },
+                {
+                    "id": "/en/jewish_museum_berlin",
+                    "name": "Jewish Museum Berlin"
+                },
+                {
+                    "id": "/en/berlin_wall",
+                    "name": "Berlin Wall"
+                },
+                {
+                    "id": "/wikipedia/da_title/Rigsdagsbygningen_i_Berlin",
+                    "name": "Reichstag building"
+                },
+                {
+                    "id": "/en/fernsehturm",
+                    "name": "Fernsehturm Berlin"
+                },
+                {
+                    "id": "/en/kaufhaus_des_westens",
+                    "name": "Kaufhaus des Westens"
+                }
+            ],
+            "id": "/en/berlin",
+            "type": "/travel/travel_destination",
+            "name": "Berlin"
+        },
+        {
+            "tourist_attractions": [
+                {
+                    "id": "/m/072bvk1",
+                    "name": "Forest Lake State Park"
+                }
+            ],
+            "id": "/en/berlin_new_hampshire",
+            "type": "/travel/travel_destination",
+            "name": "Berlin"
+        }
+    ]
+}
