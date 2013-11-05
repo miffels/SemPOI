@@ -8,6 +8,7 @@ import com.google.api.client.http.HttpRequestFactory;
 import com.google.api.client.http.HttpResponse;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -38,6 +39,7 @@ public class Freebase {
 			url.put("key", key);
 			HttpRequest request = requestFactory.buildGetRequest(url);
 			HttpResponse httpResponse = request.execute();
+			System.out.println(httpResponse.parseAsString());
 			JsonObject response = (JsonObject) parser.parse(httpResponse.parseAsString());
 			JsonArray results = (JsonArray) response.get("result");
 			for (Object result : results) {

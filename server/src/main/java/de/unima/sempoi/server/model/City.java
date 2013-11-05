@@ -5,7 +5,7 @@ import java.util.List;
 public class City {
 	
 	private String name;
-	private LatLng locaction;
+	private LatLng location;
 	private List<Sight> sights;
 
 	public String getName() {
@@ -16,12 +16,12 @@ public class City {
 		this.name = name;
 	}
 
-	public LatLng getLocaction() {
-		return locaction;
+	public LatLng getLocation() {
+		return location;
 	}
 
-	public void setLocaction(LatLng locaction) {
-		this.locaction = locaction;
+	public void setLocation(LatLng locaction) {
+		this.location = locaction;
 	}
 
 	public List<Sight> getSights() {
