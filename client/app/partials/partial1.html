@@ -1,22 +1,20 @@
-<div class="row">
+<div class="row" ng-controller="MainCtrl">
 	<div class="col-lg-4">
 
-		<div class="input-group">
-			<input type="text" class="form-control" placeholder="Search for city">
-			<span class="input-group-btn">
-				<button class="btn btn-default" type="button">Search!</button>
-			</span>
-		</div>
+		<form ng-submit="searchCity()">
+			<div class="input-group" >
+				<input ng-model="city" type="text" class="form-control" placeholder="Search for city"/>
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="submit">Search!</button>
+				</span>
+			</div>
+		</form>
 		<br/><br/>
 		<div id="result-list">
 			<div class="panel panel-default">
-				<div class="panel-heading">Sights in ...</div>
+				<div class="panel-heading"><b>Sights in {{city}}</b></div>
 				<ul class="list-group">
-					<li class="list-group-item">Cras justo odio</li>
-					<li class="list-group-item">Dapibus ac facilisis in</li>
-					<li class="list-group-item">Morbi leo risus</li>
-					<li class="list-group-item">Porta ac consectetur ac</li>
-					<li class="list-group-item">Vestibulum at eros</li>
+					<li ng-repeat="sight in sights" class="list-group-item">{{sight.name}}</li>
 				</ul>
 			</div>
 		</div>

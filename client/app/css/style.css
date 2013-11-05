@@ -10,3 +10,8 @@ google-map {
 google-map img {
 	max-width: none;
 }
+
+#result-list{
+    overflow-y:scroll;
+    overflow-x:hidden;
+}
