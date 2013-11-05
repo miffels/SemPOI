@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpRequestFactory;
+import com.google.api.client.http.HttpResponseException;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.gson.Gson;
@@ -26,7 +27,10 @@ public class Freebase {
 	private String key = new Settings().getFreebaseApiKey();
 	
 
-	public List<Attraction> readSightsOfCity(String city) {
+	public List<Attraction> readSightsOfCity(String city) throws AccessNotConfiguredException, ParameterException {
+		if(city == null || "".equals(city)) {
+			throw new ParameterException("Expected parameter 'city'");
+		}
 		city = city.trim();
 		city = city.replaceAll("\"", "").replaceAll("\\\\", "");
 		String query = "[{ \"id\": null, \"name\": \""+city+"\", \"type\": \"/travel/travel_destination\", \"tourist_attractions\": [{   \"id\": null,   \"name\": null }]}]";
@@ -43,8 +47,9 @@ public class Freebase {
 					.buildGetRequest(url)
 					.execute()
 					.getContent();
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch(HttpResponseException e) {
+			throw new AccessNotConfiguredException("Freebase access not configured");
+		} catch(IOException e) {
 			return new ArrayList<Attraction>();
 		}
 		
@@ -58,7 +63,13 @@ public class Freebase {
 	 */
 	public static void main(String[] args) {
 		Freebase f = new Freebase();
-		f.readSightsOfCity("Berlin");
+		try {
+			f.readSightsOfCity("Berlin");
+		} catch (ParameterException e) {
+			e.printStackTrace();
+		} catch (AccessNotConfiguredException e) {
+			e.printStackTrace();
+		}
 
 	}
 
