@@ -9,12 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-
+import de.unima.sempoi.server.adapter.dbpedia.Dbpedia;
 import de.unima.sempoi.server.adapter.dbpedia.DbpediaAdapter;
 import de.unima.sempoi.server.adapter.exception.AccessNotConfiguredException;
 import de.unima.sempoi.server.adapter.exception.ParameterException;
 import de.unima.sempoi.server.adapter.freebase.FreebaseAdapter;
+import de.unima.sempoi.server.model.freebase.City;
 
 /**
  * Servlet implementation class SemPOI
@@ -35,9 +35,14 @@ public class SemPoi extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter writer = response.getWriter();
 		try {
-			Set<String> sightNames = new FreebaseAdapter().readSightsOfCity(request.getParameter("city"));
-			new DbpediaAdapter().query(sightNames);
-			writer.write(new Gson().toJson(sightNames));
+			Set<City> cities = new FreebaseAdapter().readSightsOfCity(request.getParameter("city"));
+			System.out.println(cities);
+			DbpediaAdapter dbpediaAdapter = new DbpediaAdapter();
+			for(City city : cities) {
+				System.out.println(Dbpedia.getQuery(city.getAttractionNames()));
+				dbpediaAdapter.query(city.getAttractionNames());
+			}
+//			writer.write(new Gson().toJson(sightNames));
 		} catch (ParameterException e) {
 			response.setStatus(400);
 			writer.write(e.getMessage());

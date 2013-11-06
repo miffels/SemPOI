@@ -15,6 +15,7 @@ import com.google.gson.Gson;
 
 import de.unima.sempoi.server.adapter.exception.AccessNotConfiguredException;
 import de.unima.sempoi.server.adapter.exception.ParameterException;
+import de.unima.sempoi.server.model.freebase.City;
 import de.unima.sempoi.server.model.freebase.Response;
 import de.unima.sempoi.server.settings.Settings;
 
@@ -26,14 +27,33 @@ import de.unima.sempoi.server.settings.Settings;
 public class FreebaseAdapter {
 
 	private String key = new Settings().getFreebaseApiKey();
+	private static final String QUERY_TEMPLATE = "[{" +
+			"	\"name\": \"%s\"," +
+			"	\"type\": \"/travel/travel_destination\"," +
+			"	\"/location/location/geolocation\": [{" +
+			"		\"/location/geocode/latitude\": null," +
+			"		\"/location/geocode/longitude\": null" +
+			"	}]," +
+			"	\"/location/location/containedby\": [{" +
+			"		\"name\": null" +
+			"	}]," +
+			"	\"tourist_attractions\": [{" +
+			"		\"/location/location/geolocation\": [{" +
+			"			\"/location/geocode/latitude\": null," +
+			"			\"/location/geocode/longitude\": null," +
+			"			\"optional\": true" +
+			"		}]," +
+			"		\"name\": null" +
+			"	}]" +
+			"}]";
 
-	public Set<String> readSightsOfCity(String city) throws AccessNotConfiguredException, ParameterException {
+	public Set<City> readSightsOfCity(String city) throws AccessNotConfiguredException, ParameterException {
 		if(city == null || "".equals(city)) {
 			throw new ParameterException("Expected parameter 'city'");
 		}
 		city = city.trim();
 		city = city.replaceAll("\"", "").replaceAll("\\\\", "");
-		String query = "[{ \"id\": null, \"name\": \""+city+"\", \"type\": \"/travel/travel_destination\", \"tourist_attractions\": [{   \"id\": null,   \"name\": null }]}]";
+		String query = String.format(QUERY_TEMPLATE, city);
 		
 		HttpTransport httpTransport = new NetHttpTransport();
 		HttpRequestFactory requestFactory = httpTransport.createRequestFactory();
@@ -50,12 +70,13 @@ public class FreebaseAdapter {
 		} catch(HttpResponseException e) {
 			throw new AccessNotConfiguredException("Freebase access not configured");
 		} catch(IOException e) {
-			return new HashSet<String>();
+			return new HashSet<City>();
 		}
 		
-		return new Gson()
-				.fromJson(new InputStreamReader(stream), Response.class)
-				.getAttractionNames();
+		Response response = new Gson()
+		.fromJson(new InputStreamReader(stream), Response.class);
+		
+		return response.getCities();
 	}
 
 	/**

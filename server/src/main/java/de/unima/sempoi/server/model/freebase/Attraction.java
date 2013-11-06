@@ -1,16 +1,10 @@
 package de.unima.sempoi.server.model.freebase;
 
-public class Attraction {
+public class Attraction extends Poi {
 	
-	private String id;
-	private String name;
-	
-	public String getId() {
-		return id;
-	}
-	
-	public String getName() {
-		return name;
+	@Override
+	public String toString() {
+		return "Attraction " +  this.getName() + " (" + this.getLocation() + ")";
 	}
 	
 }

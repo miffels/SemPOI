@@ -1,118 +1,196 @@
 {
-    "result": [
+  "result": [
+    {
+      "name": "Berlin",
+      "tourist_attractions": [
         {
-            "tourist_attractions": [
-                {
-                    "id": "/en/deutscher_dom",
-                    "name": "Neue Kirche, Berlin"
-                },
-                {
-                    "id": "/en/reichstag_dome",
-                    "name": "Reichstag dome"
-                },
-                {
-                    "id": "/en/potsdamer_platz",
-                    "name": "Potsdamer Platz"
-                },
-                {
-                    "id": "/en/berliner_dom",
-                    "name": "Berlin Cathedral"
-                },
-                {
-                    "id": "/en/kaiser_wilhelm_memorial_church",
-                    "name": "Kaiser Wilhelm Memorial Church"
-                },
-                {
-                    "id": "/en/franzosischer_dom",
-                    "name": "French Cathedral, Berlin"
-                },
-                {
-                    "id": "/en/deutsches_historisches_museum",
-                    "name": "Deutsches Historisches Museum"
-                },
-                {
-                    "id": "/en/gemaldegalerie_berlin",
-                    "name": "Gemäldegalerie, Berlin"
-                },
-                {
-                    "id": "/en/pergamon_museum",
-                    "name": "Pergamon Museum"
-                },
-                {
-                    "id": "/en/checkpoint_charlie",
-                    "name": "Checkpoint Charlie"
-                },
-                {
-                    "id": "/en/brandenburg_gate",
-                    "name": "Brandenburg Gate"
-                },
-                {
-                    "id": "/en/alexanderplatz",
-                    "name": "Alexanderplatz"
-                },
-                {
-                    "id": "/en/olympiastadion_berlin",
-                    "name": "Olympic Stadium"
-                },
-                {
-                    "id": "/en/charlottenburg_palace",
-                    "name": "Charlottenburg Palace"
-                },
-                {
-                    "id": "/en/deutsche_guggenheim_berlin",
-                    "name": "Deutsche Guggenheim, Berlin"
-                },
-                {
-                    "id": "/wikipedia/en_title/K$00E4the_Kollwitz_Museum_$0028Berlin$0029",
-                    "name": "Käthe Kollwitz Museum"
-                },
-                {
-                    "id": "/en/humboldt_museum",
-                    "name": "Museum für Naturkunde"
-                },
-                {
-                    "id": "/en/neue_nationalgalerie",
-                    "name": "Neue Nationalgalerie"
-                },
-                {
-                    "id": "/m/0j3q409",
-                    "name": "Collegienhaus"
-                },
-                {
-                    "id": "/en/jewish_museum_berlin",
-                    "name": "Jewish Museum Berlin"
-                },
-                {
-                    "id": "/en/berlin_wall",
-                    "name": "Berlin Wall"
-                },
-                {
-                    "id": "/wikipedia/da_title/Rigsdagsbygningen_i_Berlin",
-                    "name": "Reichstag building"
-                },
-                {
-                    "id": "/en/fernsehturm",
-                    "name": "Fernsehturm Berlin"
-                },
-                {
-                    "id": "/en/kaufhaus_des_westens",
-                    "name": "Kaufhaus des Westens"
-                }
-            ],
-            "id": "/en/berlin",
-            "type": "/travel/travel_destination",
-            "name": "Berlin"
+          "name": "Neue Kirche, Berlin",
+          "/location/location/geolocation": [{
+            "/location/geocode/latitude": 52.512756,
+            "/location/geocode/longitude": 13.392506
+          }]
         },
         {
-            "tourist_attractions": [
-                {
-                    "id": "/m/072bvk1",
-                    "name": "Forest Lake State Park"
-                }
-            ],
-            "id": "/en/berlin_new_hampshire",
-            "type": "/travel/travel_destination",
-            "name": "Berlin"
+          "name": "Reichstag dome",
+          "/location/location/geolocation": [{
+            "/location/geocode/latitude": 52.518611,
+            "/location/geocode/longitude": 13.376111
+          }]
+        },
+        {
+          "name": "Potsdamer Platz",
+          "/location/location/geolocation": [{
+            "/location/geocode/latitude": 52.5094,
+            "/location/geocode/longitude": 13.3765
+          }]
+        },
+        {
+          "name": "Berlin Cathedral",
+          "/location/location/geolocation": [{
+            "/location/geocode/latitude": 52.519167,
+            "/location/geocode/longitude": 13.401111
+          }]
+        },
+        {
+          "name": "Kaiser Wilhelm Memorial Church",
+          "/location/location/geolocation": [{
+            "/location/geocode/latitude": 52.505,
+            "/location/geocode/longitude": 13.335
+          }]
+        },
+        {
+          "name": "French Cathedral, Berlin",
+          "/location/location/geolocation": [{
+            "/location/geocode/latitude": 52.514323,
+            "/location/geocode/longitude": 13.392119
+          }]
+        },
+        {
+          "name": "Deutsches Historisches Museum",
+          "/location/location/geolocation": [{
+            "/location/geocode/latitude": 52.518333,
+            "/location/geocode/longitude": 13.396111
+          }]
+        },
+        {
+          "name": "Gemäldegalerie, Berlin",
+          "/location/location/geolocation": [{
+            "/location/geocode/latitude": 52.508472,
+            "/location/geocode/longitude": 13.365417
+          }]
+        },
+        {
+          "name": "Pergamon Museum",
+          "/location/location/geolocation": [{
+            "/location/geocode/latitude": 52.521,
+            "/location/geocode/longitude": 13.396
+          }]
+        },
+        {
+          "name": "Checkpoint Charlie",
+          "/location/location/geolocation": [{
+            "/location/geocode/latitude": 52.5075,
+            "/location/geocode/longitude": 13.39027
+          }]
+        },
+        {
+          "name": "Brandenburg Gate",
+          "/location/location/geolocation": [{
+            "/location/geocode/latitude": 52.516272,
+            "/location/geocode/longitude": 13.377722
+          }]
+        },
+        {
+          "name": "Alexanderplatz",
+          "/location/location/geolocation": [{
+            "/location/geocode/latitude": 52.521667,
+            "/location/geocode/longitude": 13.413333
+          }]
+        },
+        {
+          "name": "Olympic Stadium",
+          "/location/location/geolocation": [{
+            "/location/geocode/latitude": 52.514722,
+            "/location/geocode/longitude": 13.239444
+          }]
+        },
+        {
+          "name": "Charlottenburg Palace",
+          "/location/location/geolocation": [{
+            "/location/geocode/latitude": 52.521111,
+            "/location/geocode/longitude": 13.295833
+          }]
+        },
+        {
+          "name": "Deutsche Guggenheim, Berlin",
+          "/location/location/geolocation": []
+        },
+        {
+          "name": "Käthe Kollwitz Museum",
+          "/location/location/geolocation": []
+        },
+        {
+          "name": "Museum für Naturkunde",
+          "/location/location/geolocation": [{
+            "/location/geocode/latitude": 52.53002,
+            "/location/geocode/longitude": 13.379514
+          }]
+        },
+        {
+          "name": "Neue Nationalgalerie",
+          "/location/location/geolocation": []
+        },
+        {
+          "name": "Collegienhaus",
+          "/location/location/geolocation": [{
+            "/location/geocode/latitude": 52.502,
+            "/location/geocode/longitude": 13.395
+          }]
+        },
+        {
+          "name": "Jewish Museum Berlin",
+          "/location/location/geolocation": [{
+            "/location/geocode/latitude": 52.502,
+            "/location/geocode/longitude": 13.395
+          }]
+        },
+        {
+          "name": "Berlin Wall",
+          "/location/location/geolocation": [{
+            "/location/geocode/latitude": 52.516111,
+            "/location/geocode/longitude": 13.376944
+          }]
+        },
+        {
+          "name": "Reichstag building",
+          "/location/location/geolocation": [{
+            "/location/geocode/latitude": 52.5186,
+            "/location/geocode/longitude": 13.376
+          }]
+        },
+        {
+          "name": "Fernsehturm Berlin",
+          "/location/location/geolocation": [{
+            "/location/geocode/latitude": 52.520833,
+            "/location/geocode/longitude": 13.409444
+          }]
+        },
+        {
+          "name": "Kaufhaus des Westens",
+          "/location/location/geolocation": [{
+            "/location/geocode/latitude": 52.501667,
+            "/location/geocode/longitude": 13.341111
+          }]
         }
-    ]
+      ],
+      "/location/location/geolocation": [{
+        "/location/geocode/latitude": 52.516667,
+        "/location/geocode/longitude": 13.383333
+      }],
+      "/location/location/containedby": [{
+        "name": "Germany"
+      }],
+      "type": "/travel/travel_destination"
+    },
+    {
+      "name": "Berlin",
+      "tourist_attractions": [{
+        "name": "Forest Lake State Park",
+        "/location/location/geolocation": []
+      }],
+      "/location/location/geolocation": [{
+        "/location/geocode/latitude": 44.468611,
+        "/location/geocode/longitude": -71.183889
+      }],
+      "/location/location/containedby": [
+        {
+          "name": "Coos County"
+        },
+        {
+          "name": "New Hampshire"
+        }
+      ],
+      "type": "/travel/travel_destination"
+    }
+  ]
 }
