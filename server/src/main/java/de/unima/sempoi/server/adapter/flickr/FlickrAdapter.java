@@ -23,7 +23,7 @@ public class FlickrAdapter implements Callable<Void> {
 	@Override
 	public Void call() throws Exception {
 		try {
-			Document doc = Jsoup.connect(this.sight.getPhotoUrl()).get();
+			Document doc = Jsoup.connect(this.sight.getPhotoUrl()).timeout(10000).get();
 			Elements imageTags = doc.select("html body p a img");
 			List<String> images = new ArrayList<String>();
 			for(Element image : imageTags) {
