@@ -1,39 +1,46 @@
 package de.unima.sempoi.server.adapter.dbpedia;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.Callable;
 
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.query.QueryFactory;
-import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
 
-public class DbpediaAdapter {
+import de.unima.sempoi.server.model.dbpedia.DbpediaSight;
+
+public class DbpediaAdapter implements Callable<Map<String, DbpediaSight>> {
 	
-	public void query(Set<String> sightNames) {
+	private Set<String> sightNames;
+	
+	public DbpediaAdapter(Set<String> sightNames) {
+		this.sightNames = sightNames;		
+	}
+	
+	public Map<String, DbpediaSight> query() {
 		Query query = QueryFactory.create(Dbpedia.getQuery(sightNames));
 		QueryExecution qexec = QueryExecutionFactory.sparqlService("http://dbpedia.org/sparql", query);
+		Map<String, DbpediaSight> sights = new HashMap<String, DbpediaSight>();
 		try {
 		    ResultSet results = qexec.execSelect();
-		    if(results.hasNext()) {
-		    	System.out.println("Resource\t\t\t\t\tlabel\tcomment\tphotos\t");
-		    } else {
-		    	System.out.println("No results.");
-		    }
 		    for (; results.hasNext();) {
-		    	QuerySolution result = results.next();
-		    	System.out.print(
-		    			result.get("s") + "\t"
-		    			+ result.get("l") + "\t"
-		    			+ result.get("c") + "\t"
-		    			+ result.get("p"));
-		    	System.out.println();
+		    	DbpediaSight sight = SightFactory.createSightFrom(results.next()); 
+		    	sights.put(sight.getLabel(), sight);
 		    }
 		}
 		finally {
 		   qexec.close();
 		}
+		return sights;
+	}
+
+	@Override
+	public Map<String, DbpediaSight> call() throws Exception {
+		return this.query();
 	}
 	
 }

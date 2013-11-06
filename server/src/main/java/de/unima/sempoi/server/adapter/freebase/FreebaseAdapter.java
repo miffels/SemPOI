@@ -15,7 +15,7 @@ import com.google.gson.Gson;
 
 import de.unima.sempoi.server.adapter.exception.AccessNotConfiguredException;
 import de.unima.sempoi.server.adapter.exception.ParameterException;
-import de.unima.sempoi.server.model.freebase.City;
+import de.unima.sempoi.server.model.freebase.FreebaseCity;
 import de.unima.sempoi.server.model.freebase.Response;
 import de.unima.sempoi.server.settings.Settings;
 
@@ -47,7 +47,7 @@ public class FreebaseAdapter {
 			"	}]" +
 			"}]";
 
-	public Set<City> readSightsOfCity(String city) throws AccessNotConfiguredException, ParameterException {
+	public Set<FreebaseCity> readSightsOfCity(String city) throws AccessNotConfiguredException, ParameterException {
 		if(city == null || "".equals(city)) {
 			throw new ParameterException("Expected parameter 'city'");
 		}
@@ -70,7 +70,7 @@ public class FreebaseAdapter {
 		} catch(HttpResponseException e) {
 			throw new AccessNotConfiguredException("Freebase access not configured");
 		} catch(IOException e) {
-			return new HashSet<City>();
+			return new HashSet<FreebaseCity>();
 		}
 		
 		Response response = new Gson()

@@ -18,4 +18,9 @@ public class GeoLocation {
 		return longitude;
 	}
 
+	@Override
+	public String toString() {
+		return this.latitude + ", " + this.longitude;
+	}
+
 }

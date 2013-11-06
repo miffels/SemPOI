@@ -6,7 +6,7 @@ import java.util.Set;
 
 import com.google.gson.annotations.SerializedName;
 
-public class City extends Poi {
+public class FreebaseCity extends Poi {
 	
 	@SerializedName("tourist_attractions")
 	private List<Attraction> attractions;

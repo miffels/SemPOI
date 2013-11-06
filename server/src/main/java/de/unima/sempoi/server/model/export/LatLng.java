@@ -1,17 +1,17 @@
-package de.unima.sempoi.server.model;
+package de.unima.sempoi.server.model.export;
 
 public class LatLng {
 
-	private long lat;
-	private long lng;
+	private double lat;
+	private double lng;
 
-	public LatLng(long lat, long lng) {
+	public LatLng(double lat, double lng) {
 		super();
 		this.lat = lat;
 		this.lng = lng;
 	}
 
-	public long getLat() {
+	public double getLat() {
 		return lat;
 	}
 
@@ -19,7 +19,7 @@ public class LatLng {
 		this.lat = lat;
 	}
 
-	public long getLng() {
+	public double getLng() {
 		return lng;
 	}
 

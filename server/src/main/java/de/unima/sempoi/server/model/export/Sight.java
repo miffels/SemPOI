@@ -1,43 +1,41 @@
-package de.unima.sempoi.server.model;
+package de.unima.sempoi.server.model.export;
 
 import java.util.List;
 
 public class Sight {
 
+	@SuppressWarnings("unused")
 	private String name;
+	
+	@SuppressWarnings("unused")
 	private LatLng location;
+	
+	@SuppressWarnings("unused")
 	private String description;
-	private List<Picture> pictures;
+	
+	@SuppressWarnings("unused")
+	private List<String> pictures;
+	
+	@SuppressWarnings("unused")
+	private String wikiUrl;
 
-	public String getName() {
-		return name;
+	public void setWikiUrl(String wikiUrl) {
+		this.wikiUrl = wikiUrl;
 	}
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public LatLng getLocation() {
-		return location;
-	}
-
 	public void setLocation(LatLng location) {
 		this.location = location;
-	}
-
-	public String getDescription() {
-		return description;
 	}
 
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
-	public List<Picture> getPictures() {
-		return pictures;
-	}
-
-	public void setPictures(List<Picture> pictures) {
+	public void setPictures(List<String> pictures) {
 		this.pictures = pictures;
 	}
 

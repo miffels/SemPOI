@@ -11,7 +11,7 @@ import org.junit.Test;
 import com.google.gson.Gson;
 
 import de.unima.sempoi.server.model.freebase.Attraction;
-import de.unima.sempoi.server.model.freebase.City;
+import de.unima.sempoi.server.model.freebase.FreebaseCity;
 import de.unima.sempoi.server.model.freebase.Response;
 
 public class ParserTest {
@@ -27,10 +27,10 @@ public class ParserTest {
 		assertEquals("It should parse 2 results",
 				2, response.getCities().size());
 		
-		Iterator<City> it = response.getCities().iterator();
+		Iterator<FreebaseCity> it = response.getCities().iterator();
 		
-		City city1 = it.next();
-		City city2 = it.next();
+		FreebaseCity city1 = it.next();
+		FreebaseCity city2 = it.next();
 		
 		assertEquals("It should the right latitude for the first city",
 				52.516667, city1.getLocation().getLatitude(), 1e-10);

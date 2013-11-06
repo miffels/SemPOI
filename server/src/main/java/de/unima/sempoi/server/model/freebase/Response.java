@@ -9,10 +9,10 @@ import com.google.gson.annotations.SerializedName;
 public class Response {
 	
 	@SerializedName("result")
-	private List<City> cities;
+	private List<FreebaseCity> cities;
 
-	public Set<City> getCities() {
-		return new LinkedHashSet<City>(this.cities);
+	public Set<FreebaseCity> getCities() {
+		return new LinkedHashSet<FreebaseCity>(this.cities);
 	}
 	
 	@Override
