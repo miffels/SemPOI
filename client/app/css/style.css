@@ -1,5 +1,6 @@
 body {
-  	padding-top: 70px;
+	padding-top: 70px;
+	height: 100%;
 }
 
 google-map {
@@ -11,7 +12,12 @@ google-map img {
 	max-width: none;
 }
 
-#result-list{
-    overflow-y:scroll;
-    overflow-x:hidden;
+#resultList {
+	max-height: 80%;
+	overflow: auto;
+}
+
+html {
+	height: 100%;
+	
 }

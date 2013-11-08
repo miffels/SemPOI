@@ -22,3 +22,12 @@ config(['$stateProvider', '$urlRouterProvider',
         $urlRouterProvider.otherwise('/view1');
     }
 ]);
+
+
+$(document).ready(function() {
+            $('#list').height($(window).height()-200);
+            $(window).resize(function() {
+                $('#list').height($(window).height()-200);
+            });
+
+        });

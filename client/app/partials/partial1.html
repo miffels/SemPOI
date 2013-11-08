@@ -10,12 +10,16 @@
 			</div>
 		</form>
 		<br/><br/>
-		<div id="result-list">
+		<div id="resultList">
 			<div class="panel panel-default">
-				<div class="panel-heading"><b>Sights in {{city}}</b></div>
-				<ul class="list-group">
-					<li ng-repeat="sight in sights" class="list-group-item">{{sight.name}}</li>
-				</ul>
+				<div class="panel-heading"><b>Sights in {{cityName}}</b></div>
+				<div  id="list" style="overflow: auto;">
+					<div ng-repeat="sight in sights"  class="well well-small" id="{{sight.name}}">
+						<strong>{{sight.name}}</strong>
+						<p>{{sight.description}}</p>
+					</div>
+
+				</div>
 			</div>
 		</div>
 		
