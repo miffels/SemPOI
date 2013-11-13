@@ -11,7 +11,6 @@
                },
 			markers: [], // an array of markers,
 			zoom: 8 // the zoom level
-
      })
 
         $scope.sights=[];
@@ -30,7 +29,7 @@
             for ( var i = 0; i < $scope.sights.length; i++) {
                 addMarker($scope.sights[i]);
             }
-            addHoverListener();
+            addListener();
             resizeUI();
         }); 
 
@@ -43,26 +42,32 @@
             $scope.markers.push({
                 latitude: parseFloat(data.location.lat),
                 longitude: parseFloat(data.location.lng),
-                label: data.name,
-                infoWindow: "<b>"+data.name+"</b><br/>"+data.description
+                onClick: function(){
+                    showDetailModal(data.name.replace(/^\s+|\s+$/g, ''));
+                }
+                // infoWindow: "<b>"+data.name+"</b><br/>"+data.description
             });
         }
 
-        function addHoverListener(){
+        function addListener(){
             $('#list').on('mouseover', 'div', function() {
                 $(this).css("background-color", "#999999");
             });
 
             $('#list').on('mouseout', 'div', function() {
-                $(this).css("background-color", "#eeeeee");
+                $(this).css("background-color", "#f5f5f5");
             });
-
 
             $('#list').on('click', 'a', function() {
-                loadDetailIntoScope($(this).text().replace(/^\s+|\s+$/g, ''));
-                $('#detailModal').modal('show');
+               showDetailModal($(this).text().replace(/^\s+|\s+$/g, ''));
             });
             
+        }
+
+        function showDetailModal(id){
+            console.log(id);
+            loadDetailIntoScope(id);
+            $('#detailModal').modal('show');
         }
 
         function loadDetailIntoScope(id){

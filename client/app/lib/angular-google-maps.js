@@ -180,8 +180,8 @@
         });
       };
       
-      this.addMarker = function (lat, lng, icon, infoWindowContent, label, url,
-          thumbnail) {
+      this.addMarker = function (lat, lng, icon, infoWindowContent, onClick, label , url,
+          thumbnail ) {
         
         if (that.findMarker(lat, lng) != null) {
           return;
@@ -192,6 +192,10 @@
           map: _instance,
           icon: icon
         });
+		
+		if(typeof onClick == 'function'){
+			google.maps.event.addListener(marker, 'click', onClick);
+		}
         
         if (label) {
           
@@ -227,7 +231,8 @@
           "infoWindowContent": infoWindowContent,
           "label": label,
           "url": url,
-          "thumbnail": thumbnail
+          "thumbnail": thumbnail,
+		  "onClick": onClick
         });
         
         // Return marker instance
@@ -477,7 +482,7 @@
             
             angular.forEach(newValue, function (v, i) {
               if (!_m.hasMarker(v.latitude, v.longitude)) {
-                _m.addMarker(v.latitude, v.longitude, v.icon, v.infoWindow);
+                _m.addMarker(v.latitude, v.longitude, v.icon, v.infoWindow, v.onClick);
               }
             });
             
