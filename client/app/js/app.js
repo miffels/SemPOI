@@ -23,11 +23,12 @@ config(['$stateProvider', '$urlRouterProvider',
     }
 ]);
 
-
 $(document).ready(function() {
             $('#list').height($(window).height()-200);
+            $('#map').height($(window).height()-100);
             $(window).resize(function() {
                 $('#list').height($(window).height()-200);
+                $('#map').height($(window).height()-100);
             });
 
         });

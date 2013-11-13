@@ -1,6 +1,5 @@
 <div class="row" ng-controller="MainCtrl">
 	<div class="col-lg-4">
-
 		<form ng-submit="searchCity()">
 			<div class="input-group" >
 				<input ng-model="city" type="text" class="form-control" placeholder="Search for city"/>
@@ -13,10 +12,20 @@
 		<div id="resultList">
 			<div class="panel panel-default">
 				<div class="panel-heading"><b>Sights in {{cityName}}</b></div>
-				<div  id="list" style="overflow: auto;">
-					<div ng-repeat="sight in sights"  class="well well-small" id="{{sight.name}}">
-						<strong>{{sight.name}}</strong>
-						<p>{{sight.description}}</p>
+				<div class="panel-group" id="accordion">
+					<div id="list" style="overflow: auto;" class="panel panel-default">
+						<div class="panel-heading" ng-repeat="sight in sights" id="{{sight.name}}">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{sight.name}}">
+									{{sight.name}}
+								</a>
+							</h4>
+						</div>
+						<div id="collapse{{sight.name}}" class="panel-collapse collapse in">
+							<div class="panel-body">
+								{{sight.description}}
+							</div>
+						</div>
 					</div>
 
 				</div>
@@ -26,6 +35,29 @@
 	</div>
 
 	<div class="col-lg-8">
-		<google-map center="center" draggable="true" zoom="zoom" markers="markers" mark-click="true" style="height: 800px"></google-map>
+		<google-map id="map" center="center" draggable="true" zoom="zoom" markers="markers" mark-click="true" style="height: 800px"></google-map>
 	</div>
+	
+	<div id="detailModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">{{detail.name}}</h4>
+				</div>
+				<div class="modal-body">
+					<p>{{detail.description}}</p>
+				</div>
+				<div id="modal-pictures" class="container">
+					<img ng-repeat="picture in detail.pictures" src="{{picture}}" style="height:80px;width:80px;">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+
 </div>
+
