@@ -10,8 +10,8 @@ angular.module('semPoi', [
     'semPoi.controllers',
     'google-maps'
 ]).
-config(['$stateProvider', '$urlRouterProvider',
-    function($stateProvider, $urlRouterProvider) {
+config(['$stateProvider', '$urlRouterProvider','$httpProvider',
+    function($stateProvider, $urlRouterProvider, $httpProvider) {
         $stateProvider
             .state('state1', {
                 url: '/view1',
@@ -20,6 +20,10 @@ config(['$stateProvider', '$urlRouterProvider',
             });
 
         $urlRouterProvider.otherwise('/view1');
+
+        //enables CORS
+        $httpProvider.defaults.useXDomain = true;
+        delete $httpProvider.defaults.headers.common['X-Requested-With'];
     }
 ]);
 
