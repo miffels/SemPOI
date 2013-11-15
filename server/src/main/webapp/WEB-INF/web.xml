@@ -3,13 +3,22 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>Archetype Created Web Application</display-name>
-  <servlet>
-      <servlet-name>SemPoi</servlet-name>
-      <servlet-class>de.unima.sempoi.server.SemPoi</servlet-class>
-  </servlet>
-  <servlet-mapping>
-      <servlet-name>SemPoi</servlet-name>
-      <url-pattern>/search</url-pattern>
-  </servlet-mapping>
+	<display-name>SemPOI</display-name>
+	<servlet>
+	    <servlet-name>SemPoi</servlet-name>
+	    <servlet-class>de.unima.sempoi.server.SemPoi</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>SemPoi</servlet-name>
+	    <url-pattern>/search</url-pattern>
+	</servlet-mapping>
+	<filter>
+		<filter-name>CORS</filter-name>
+		<filter-class>com.thetransactioncompany.cors.CORSFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<!-- CORS Filter mapping -->
+		<filter-name>CORS</filter-name>
+		<url-pattern>/search</url-pattern>
+	</filter-mapping>
 </web-app>

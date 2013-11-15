@@ -56,6 +56,14 @@
 	  <artifactId>jsoup</artifactId>
 	  <version>1.7.2</version>
 	</dependency>
+	
+	<!-- CORS filter for cross-domain JS requests -->
+	<dependency>
+		<groupId>com.thetransactioncompany</groupId>
+		<artifactId>cors-filter</artifactId>
+		<version>1.8</version>
+	</dependency>
+            
   </dependencies>
   <build>
     <finalName>server</finalName>
