@@ -20,19 +20,6 @@ config(['$stateProvider', '$urlRouterProvider','$httpProvider',
             });
 
         $urlRouterProvider.otherwise('/view1');
-
-        //enables CORS
-        $httpProvider.defaults.useXDomain = true;
-        delete $httpProvider.defaults.headers.common['X-Requested-With'];
     }
 ]);
 
-$(document).ready(function() {
-            $('#list').height($(window).height()-200);
-            $('#map').height($(window).height()-100);
-            $(window).resize(function() {
-                $('#list').height($(window).height()-200);
-                $('#map').height($(window).height()-100);
-            });
-
-        });

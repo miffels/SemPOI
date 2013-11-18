@@ -16,7 +16,7 @@
 					<div id="list" style="overflow: auto;" class="panel panel-default">
 						<div class="panel-heading" ng-repeat="sight in sights" id="{{sight.name}}">
 							<h4 class="panel-title">
-								<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{sight.name}}">
+								<a ng-click="onSightClicked(sight.name)" data-toggle="collapse" data-parent="#accordion" href="#collapse{{sight.name}}">
 									{{sight.name}}
 								</a>
 							</h4>
@@ -58,6 +58,27 @@
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
 
+	<div id="selectCityModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Found more than one city!</h4>
+				</div>
+				
+				<div class="list-group">
+					<a href="#" class="list-group-item active">
+						Please select a city from the list below!
+					</a>
+					<a ng-click="onSelectCity(city)" ng-repeat="city in cities" class="list-group-item"></a>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
 
 </div>
 
