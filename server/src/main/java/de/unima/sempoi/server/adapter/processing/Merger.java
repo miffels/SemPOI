@@ -16,6 +16,9 @@ import de.unima.sempoi.server.model.freebase.Location;
 
 public class Merger {
 	
+	private static final String FREEBASE = "Freebase";
+	private static final String DBPEDIA = "Dbpedia";
+	
 	public List<City> merge(Map<FreebaseCity, Map<String, DbpediaSight>> data) {
 		List<City> cities = new ArrayList<City>();
 		for(Entry<FreebaseCity, Map<String, DbpediaSight>> entry : data.entrySet()) {
@@ -28,6 +31,7 @@ public class Merger {
 		City city = new City();
 		
 		city.setName(freebaseCity.getName());
+		city.addId(FREEBASE, freebaseCity.getId());
 		GeoLocation location = freebaseCity.getLocation();
 		city.setLocation(location == null ? null :
 			new LatLng(location.getLatitude(), location.getLongitude()));
@@ -56,7 +60,9 @@ public class Merger {
 		Sight sight = new Sight();
 		sight.setLocation(this.getLocation(city, attraction));
 		sight.setName(attraction.getName());
+		sight.addId(FREEBASE, attraction.getId());
 		if(dbpediaSight != null) {
+			sight.addId(DBPEDIA, dbpediaSight.getDbpediaUrl());
 			sight.setDescription(dbpediaSight.getDescription());
 			sight.setPictures(dbpediaSight.getImages());
 			sight.setWikiUrl(dbpediaSight.getWikiUrl());

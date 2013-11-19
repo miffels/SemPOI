@@ -2,14 +2,8 @@ package de.unima.sempoi.server.model.export;
 
 import java.util.List;
 
-public class Sight {
+public class Sight extends Poi {
 
-	@SuppressWarnings("unused")
-	private String name;
-	
-	@SuppressWarnings("unused")
-	private LatLng location;
-	
 	@SuppressWarnings("unused")
 	private String description;
 	
@@ -21,14 +15,6 @@ public class Sight {
 
 	public void setWikiUrl(String wikiUrl) {
 		this.wikiUrl = wikiUrl;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public void setLocation(LatLng location) {
-		this.location = location;
 	}
 
 	public void setDescription(String description) {

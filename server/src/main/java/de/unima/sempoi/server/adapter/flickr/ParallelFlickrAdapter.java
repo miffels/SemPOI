@@ -15,6 +15,10 @@ import de.unima.sempoi.server.model.freebase.FreebaseCity;
 public class ParallelFlickrAdapter {
 	
 	public void loadImagesFor(Map<FreebaseCity, Map<String, DbpediaSight>> sights) {
+		if(sights.size() == 0) {
+			return;
+		}
+		
 		ExecutorService executor = Executors.newFixedThreadPool(sights.size() < 5 ? sights.size() : 5);
 		
 		List<Future<Void>> futures =

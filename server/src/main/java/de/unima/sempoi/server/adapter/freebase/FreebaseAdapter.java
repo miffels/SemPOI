@@ -28,6 +28,7 @@ public class FreebaseAdapter {
 
 	private String key = new Settings().getFreebaseApiKey();
 	private static final String QUERY_TEMPLATE = "[{" +
+			"	\"id\": null," +
 			"	\"name\": \"%s\"," +
 			"	\"type\": \"/travel/travel_destination\"," +
 			"	\"/location/location/geolocation\": [{" +
@@ -35,9 +36,11 @@ public class FreebaseAdapter {
 			"		\"/location/geocode/longitude\": null" +
 			"	}]," +
 			"	\"/location/location/containedby\": [{" +
+			"		\"id\": null," +
 			"		\"name\": null" +
 			"	}]," +
 			"	\"tourist_attractions\": [{" +
+			"		\"id\": null," +
 			"		\"/location/location/geolocation\": [{" +
 			"			\"/location/geocode/latitude\": null," +
 			"			\"/location/geocode/longitude\": null," +
@@ -75,6 +78,8 @@ public class FreebaseAdapter {
 		
 		Response response = new Gson()
 		.fromJson(new InputStreamReader(stream), Response.class);
+		
+		System.out.println(response);
 		
 		return response.getCities();
 	}
