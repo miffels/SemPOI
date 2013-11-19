@@ -10,6 +10,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+import org.apache.jena.atlas.web.HttpException;
+
 import de.unima.sempoi.server.model.dbpedia.DbpediaSight;
 import de.unima.sempoi.server.model.freebase.FreebaseCity;
 
@@ -32,13 +34,14 @@ public class ParallelDbpediaAdapter {
 		}
 		
 		for (Future<Map<String, DbpediaSight>> future : futures) {
+			FreebaseCity city = cities.get(futures.indexOf(future));
 			try {
-				FreebaseCity city = cities.get(futures.indexOf(future));
 				sights.put(city, future.get());
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			} catch (ExecutionException e) {
-				e.printStackTrace();
+				System.out.println("Querying "  + city + " failed.");
+				sights.put(city, new HashMap<String, DbpediaSight>());
 			}
 		}
 		executor.shutdown();
