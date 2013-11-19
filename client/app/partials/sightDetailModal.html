@@ -1,0 +1,18 @@
+	<div>
+		<div class="modal-header">
+			<button type="button" class="close" ng-click="$dismiss()" aria-hidden="true">&times;</button>
+			<h4 class="modal-title">{{detail.name}}</h4>
+		</div>
+
+		<div class="modal-body">
+			<p>{{detail.description}}</p>
+			<carousel interval="2000">
+				<slide ng-repeat="picture in detail.pictures">
+					<img ng-src="{{picture}}" style="margin:auto;">
+				</slide>
+			</carousel>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-danger" ng-click="$dismiss()">Close</button>
+		</div>
+	</div>

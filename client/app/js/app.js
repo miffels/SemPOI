@@ -8,7 +8,8 @@ angular.module('semPoi', [
     'semPoi.services',
     'semPoi.directives',
     'semPoi.controllers',
-    'google-maps'
+    'google-maps',
+    'ui.bootstrap'
 ]).
 config(['$stateProvider', '$urlRouterProvider','$httpProvider',
     function($stateProvider, $urlRouterProvider, $httpProvider) {
@@ -22,4 +23,5 @@ config(['$stateProvider', '$urlRouterProvider','$httpProvider',
         $urlRouterProvider.otherwise('/view1');
     }
 ]);
+
 

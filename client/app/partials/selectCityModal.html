@@ -1,0 +1,19 @@
+	<div>
+		<div class="modal-header">
+			<button type="button" class="close" ng-click="cancel()" aria-hidden="true">&times;</button>
+			<h4 class="modal-title">Found more than one city!</h4>
+		</div>
+
+		<div class="modal-body">
+			<p>Please select a city from the list below!</p>
+			<ul class="nav nav-tabs nav-stacked">
+				<li  ng-repeat="item in items">
+				<a href="#" ng-click="itemSelected(item)">{{item.name}} in {{item.in}}</a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="modal-footer">
+			<button type="button" class="btn btn-danger" ng-click="cancel()">Cancel</button>
+		</div>
+	</div>

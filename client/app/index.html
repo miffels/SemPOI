@@ -7,32 +7,25 @@
     <meta name="author" content="Christian Bikar">
     <meta name="author" content="Michael Jess">
     <title>SemPOI</title>
-    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" media="screen" href="lib/bootstrap/css/bootstrap.css"/>
     <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body ng-app="semPoi" >   
 
-    <nav class="navbar navbar-default  navbar-fixed-top" role="navigation">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">SemPOI</a>
-        </div>
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <a class="brand" href="#">SemPOI</a>
+            <ul class="nav">
                 <li class="active"><a href="#">Home</a></li>
             </ul>
         </div>
-    </nav>
+    </div>
 
-    <div  ui-view></div>
+    <div  class="container" ui-view></div>
 
 
     <script src="lib/jQuery/jquery-2.0.3.js"></script>
-    <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.js"></script>
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular/angular-route.js"></script>
     <script src="lib/angular/angular-ui-router.js"></script>
@@ -45,9 +38,11 @@
     <script src="js/services/rest.js"></script>
     <script src="js/controllers/module.js"></script>
     <script src="js/controllers/mainCtrl.js"></script>
+    <script src="js/controllers/selectCityCtrl.js"></script>
     <script src="js/filters/module.js"></script>
     <script src="js/filters/interpolate.js"></script>
     <script src="js/directives/module.js"></script>
-    <script src="js/directives/appVersion.js"></script>
+    <script src="js/directives/mapResize.js"></script>
+    <script src="lib/ui-bootstrap-0.6.0.js"></script>
 </body>
 </html>

@@ -7,9 +7,7 @@
 		var restFactory = {};
 
 		restFactory.getSights = function(city) {
-			return $http.get('berlin.json').then(function(result) {
-				return result.data[0];
-			});
+			return $http.get('http://localhost:8080/server/search?city='+city);
 		};
 
 		return restFactory;
