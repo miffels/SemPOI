@@ -1,13 +1,12 @@
 package de.unima.sempoi.server.processing;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-
-import org.apache.commons.lang3.StringEscapeUtils;
 
 import de.unima.sempoi.server.model.dbpedia.DbpediaSight;
 import de.unima.sempoi.server.model.export.City;
@@ -32,6 +31,7 @@ public class Merger {
 	}
 	
 	private City createCity(FreebaseCity freebaseCity, Map<String, DbpediaSight> dbpediaSights) {
+		Map<String, Integer> sightTypeCounts = new HashMap<String, Integer>();
 		City city = new City();
 		
 		city.setName(escape(freebaseCity.getName()));
@@ -48,11 +48,16 @@ public class Merger {
 		
 		city.setSights(sights);
 		
-		Set<String> types = new HashSet<String>();
 		for(Sight sight : sights) {
-			types.addAll(sight.getTypes());
+			for(String type : sight.getTypes()) {
+				if(!sightTypeCounts.containsKey(type)) {
+					sightTypeCounts.put(type, 1);
+				} else {
+					sightTypeCounts.put(type, sightTypeCounts.get(type) + 1);
+				}
+			}
 		}
-		city.setTypes(types);
+		city.setTypes(sightTypeCounts);
 		
 		StringBuffer in = new StringBuffer("");
 		String separator = "";
