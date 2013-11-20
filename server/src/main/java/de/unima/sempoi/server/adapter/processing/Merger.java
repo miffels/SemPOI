@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import org.apache.commons.lang3.StringEscapeUtils;
+
 import de.unima.sempoi.server.model.dbpedia.DbpediaSight;
 import de.unima.sempoi.server.model.export.City;
 import de.unima.sempoi.server.model.export.LatLng;
@@ -32,7 +34,7 @@ public class Merger {
 	private City createCity(FreebaseCity freebaseCity, Map<String, DbpediaSight> dbpediaSights) {
 		City city = new City();
 		
-		city.setName(freebaseCity.getName());
+		city.setName(escape(freebaseCity.getName()));
 		city.addId(FREEBASE, freebaseCity.getId());
 		GeoLocation location = freebaseCity.getLocation();
 		city.setLocation(location == null ? null :
@@ -59,22 +61,34 @@ public class Merger {
 			in.append(containedBy.getName());
 			separator = ", ";
 		}
-		city.setIn(in.toString());
+		city.setIn(escape(in.toString()));
 		
 		return city;
+	}
+	
+	private String escape(String s) {
+		return StringEscapeUtils.escapeHtml4(s);
+	}
+	
+	private Set<String> escape(Set<String> c) {
+		Set<String> result = new HashSet<String>();
+		for(String s : c) {
+			result.add(escape(s));
+		}
+		return result;
 	}
 	
 	private Sight createSight(FreebaseCity city, Attraction attraction, DbpediaSight dbpediaSight) {
 		Sight sight = new Sight();
 		sight.setLocation(this.getLocation(city, attraction));
-		sight.setName(attraction.getName());
+		sight.setName(escape(attraction.getName()));
 		sight.addId(FREEBASE, attraction.getId());
 		if(dbpediaSight != null) {
 			sight.addId(DBPEDIA, dbpediaSight.getDbpediaUrl());
-			sight.setDescription(dbpediaSight.getDescription());
+			sight.setDescription(escape(dbpediaSight.getDescription()));
 			sight.setPictures(dbpediaSight.getImages());
 			sight.setWikiUrl(dbpediaSight.getWikiUrl());
-			sight.setTypes(dbpediaSight.getTypes());
+			sight.setTypes(escape(dbpediaSight.getTypes()));
 		}
 		return sight;
 	}
