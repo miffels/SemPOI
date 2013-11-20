@@ -1,26 +1,40 @@
-<div class="row" ng-controller="MainCtrl">
-	<div class="span4">
-		<form ng-submit="searchCity()" class="form-search">
-			<input ng-model="city" type="text" class="input-medium search-query" placeholder="Search for city"/>
-			<button class="btn" type="submit">Search!</button>
-		</form>
-		<br/>
-		<div ng-show="loading" class="alert alert-info">
-			<a href="#" class="alert-link">Loading...</a>
-		</div>		
+<div ng-controller="MainCtrl">
+	<div class="navbar">
+		<div class="navbar-inner">
+			<a class="brand" href="#">SemPOI</a>
+			<form ng-submit="searchCity()" class="navbar-form">
+				<input ng-model="city" type="text" class="span4 search-query" placeholder="Search for city">
+				<button type="submit" class="btn">Search</button>
+			</form>
+			<div x-spinner id="spinner" ng-show="loading"/>
+		</div>
+	</div>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span3">
+				<div id="categoriesContainer" style="background-color:white;position:relative;" class="rounded"  ng-show="sights.length">
+					<h4 class="text-center" style="color:gray;">Categories</h4>
+					<div id="categories" x-resize x-margin-bottom="145" style="overflow:auto;">
+						<label class="checkbox">
+							<input type="checkbox"> Category1
+						</label>
+					</div>
+					<button style="position:absolute;bottom:0;" class="btn btn-large btn-block btn-primary" type="button">Get directions</button>
+				</div>
+			</div>
 
-		<div id="resultList" ng-show="sights.length">
-			<h4 class="text-center">Sights in {{cityName}}</h4>
-			<div id="list" x-map-resize x-margin-bottom="220" style="overflow: auto;">
-				<div ng-include="'partials/cityListAccordion.html'"></div>
+			<div class="span3">
+				<div id="resultList" style="background-color:white;" class="rounded"  ng-show="sights.length">
+					<h4 class="text-center" style="color:gray;">Sights in {{cityName}}</h4>
+					<div id="list" x-resize x-margin-bottom="145" style="overflow:auto;">
+						<div ng-include="'partials/cityListAccordion.html'"></div>
+					</div>
+				</div>
+			</div>
+			<div class="span6" x-resize x-target-id="map">
+				<google-map id="map" center="center" draggable="true" zoom="zoom" markers="markers" mark-click="false" style="height: 800px"></google-map>
 			</div>
 		</div>
-
 	</div>
-
-	<div class="span8" x-map-resize x-target-id="map">
-		<google-map id="map" center="center" draggable="true" zoom="zoom" markers="markers" mark-click="false" style="height: 800px"></google-map>
-	</div>
-
 </div>
 

@@ -8,13 +8,14 @@
         $scope.center = {
              latitude: 49, // initial map center latitude
              longitude: 9 // initial map center longitude
-         };
-         $scope.zoom = 8;
-         $scope.markers = [];
-         $scope.sights=[];
-         $scope.loading = false;
+        };
+        $scope.zoom = 8;
+        $scope.markers = [];
+        $scope.sights=[];
+        $scope.loading = false;
 
          $scope.searchCity = function(){
+            $scope.sights=[];
             $scope.loading = true;            
             restFactory.getSights($scope.city)
             .success(function(result){
@@ -29,7 +30,7 @@
                     $scope.cityName = result[0].name;
                     $scope.sights = result[0].sights;
                 }else{
-                   var modalInstance = $modal.open({
+                 var modalInstance = $modal.open({
                     templateUrl: 'partials/selectCityModal.html',
                     controller: 'SelectCityCtrl',
                     resolve: {
@@ -38,19 +39,19 @@
                       }
                   }
               });
-                   modalInstance.result.then(function (selectedItem) {
-                     $scope.center.latitude = selectedItem.location.lat;
-                     $scope.center.longitude = selectedItem.location.lng;
-                     $scope.zoom = 13;
-                     $scope.cityName = selectedItem.name;
-                     $scope.sights = selectedItem.sights;
-                     $scope.refresh = true;
-                 }, function () {
-                    console.log('Modal dismissed at: ' + new Date());
-                });
-               }
+                 modalInstance.result.then(function (selectedItem) {
+                   $scope.center.latitude = selectedItem.location.lat;
+                   $scope.center.longitude = selectedItem.location.lng;
+                   $scope.zoom = 13;
+                   $scope.cityName = selectedItem.name;
+                   $scope.sights = selectedItem.sights;
+                   $scope.refresh = true;
+               }, function () {
+                console.log('Modal dismissed at: ' + new Date());
+            });
+             }
 
-           })
+         })
 .error(function(){
     console.log('request failed');
     $scope.loading = false;
@@ -60,7 +61,6 @@
 };
 
 $scope.onSightClicked = function(id){
-    console.log("asd");
     showDetailModal(id);
 };
 
@@ -73,9 +73,11 @@ $scope.$watch('sights', function() {
     resizeUI();
 }); 
 
+
 function resizeUI(){
     $('#map').height($(window).height()-100);
-    $('#list').height($(window).height()-220);
+    $('#list').height($(window).height()-145);
+    $('#categories').height($(window).height()-145);
 }
 
 function addMarker(data) {
@@ -85,8 +87,7 @@ function addMarker(data) {
         onClick: function(){
             showDetailModal(data.name);
         }
-                // infoWindow: "<b>"+data.name+"</b><br/>"+data.description
-            });
+    });
 }
 
 function showDetailModal(id){

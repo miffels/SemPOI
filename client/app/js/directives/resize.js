@@ -3,7 +3,7 @@
 (function() {
 	'use strict';
 
-	directives.directive('mapResize', ['$window', function(window) {
+	directives.directive('resize', ['$window', function(window) {
 		return function($scope, $element, $attrs) {
 			var $window = $(window);
 			var marginBottom = $attrs.marginBottom ?  ~~$attrs.marginBottom : 100;

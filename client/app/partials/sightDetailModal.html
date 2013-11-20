@@ -6,11 +6,13 @@
 
 		<div class="modal-body">
 			<p>{{detail.description}}</p>
-			<carousel interval="2000">
+			<carousel interval="2000" style="height: 220px;" >
 				<slide ng-repeat="picture in detail.pictures">
 					<img ng-src="{{picture}}" style="margin:auto;">
 				</slide>
 			</carousel>
+			<a class="muted pull-right" ng-show="detail.ids.Freebase" href="http://freebase.com{{detail.ids.Freebase}}" target="_blank">Freebase Object</a><br/>
+			<a class="muted pull-right" ng-show="detail.ids.Dbpedia" href="{{detail.ids.Dbpedia}}" target="_blank">Dbpedia Object</a>
 		</div>
 		<div class="modal-footer">
 			<button type="button" class="btn btn-danger" ng-click="$dismiss()">Close</button>
