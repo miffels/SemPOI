@@ -79,8 +79,6 @@ public class FreebaseAdapter {
 		Response response = new Gson()
 		.fromJson(new InputStreamReader(stream), Response.class);
 		
-		System.out.println(response);
-		
 		return response.getCities();
 	}
 

@@ -1,6 +1,8 @@
 package de.unima.sempoi.server.model.dbpedia;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class DbpediaSight {
 	
@@ -8,6 +10,7 @@ public class DbpediaSight {
 	private String description;
 	private String wikiUrl;
 	private String photoUrl;
+	private Set<String> types = new HashSet<String>();
 	private String dbpediaUrl;
 	
 	private List<String> images;
@@ -49,9 +52,17 @@ public class DbpediaSight {
 	public void setImages(List<String> images) {
 		this.images = images;
 	}
+	
+	public Set<String> getTypes() {
+		return this.types;
+	}
 
 	public String toString() {
 		return "DbpediaSight " + this.dbpediaUrl + ": " + this.getLabel();
+	}
+
+	public void addType(String type) {
+		this.types.add(type);
 	}
 
 }

@@ -7,6 +7,7 @@ public class Dbpedia {
 	private static final String QUERY_BASE =
 			"PREFIX dbpedia2: <http://dbpedia.org/property/>\n" +
 			"PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n" +
+			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
 			"PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n\n" +
 
 			"SELECT *\n" +
@@ -16,6 +17,7 @@ public class Dbpedia {
 			"	?sight rdfs:label \"%s\"@en.\n" +
 			"	?sight rdfs:label ?label.\n" +
 			"	?sight rdfs:comment ?comment.\n" +
+			"	?sight rdf:type ?type.\n" +
 			"	OPTIONAL {?sight dbpedia2:hasPhotoCollection ?photos}\n" +
 			"	OPTIONAL {?sight foaf:isPrimaryTopicOf ?wikiLink}\n" +
 			"	FILTER(STRSTARTS(STR(?sight), \"http://dbpedia.org/resource\"))\n" +

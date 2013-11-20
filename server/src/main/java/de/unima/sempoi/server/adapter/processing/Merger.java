@@ -66,6 +66,7 @@ public class Merger {
 			sight.setDescription(dbpediaSight.getDescription());
 			sight.setPictures(dbpediaSight.getImages());
 			sight.setWikiUrl(dbpediaSight.getWikiUrl());
+			sight.setTypes(dbpediaSight.getTypes());
 		}
 		return sight;
 	}

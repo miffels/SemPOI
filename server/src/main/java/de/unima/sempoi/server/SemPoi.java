@@ -3,6 +3,7 @@ package de.unima.sempoi.server;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import javax.servlet.ServletException;
@@ -41,9 +42,16 @@ public class SemPoi extends HttpServlet {
 		PrintWriter writer = response.getWriter();
 		try {
 			Set<FreebaseCity> cities = new FreebaseAdapter().readSightsOfCity(request.getParameter("city"));
+			System.out.println("Got " + cities.size() + " cities from Freebase.");
 			ParallelDbpediaAdapter dbpediaAdapter = new ParallelDbpediaAdapter();
 			Map<FreebaseCity, Map<String, DbpediaSight>> sights = dbpediaAdapter.getSightDetailsFor(cities);
+			int count = 0;
+			for(Entry<FreebaseCity, Map<String, DbpediaSight>> entry : sights.entrySet()) {
+				count += entry.getValue().size();
+			}
+			System.out.println("Got " + count + " sights from Dbpedia.");
 			new ParallelFlickrAdapter().loadImagesFor(sights);
+			System.out.println("Images loaded from Flickr.");
 			writer.write(new Gson().toJson(new Merger().merge(sights)));
 		} catch (ParameterException e) {
 			response.setStatus(400);

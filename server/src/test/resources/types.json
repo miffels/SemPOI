@@ -1,0 +1,66 @@
+[	
+	{
+		"in": "http://dbpedia.org/class/yago/EthnographicMuseumsInGermany",
+		"out": "Ethnographic Museums In Germany"
+	}, {
+		"in": "http://dbpedia.org/class/yago/RoyalResidencesInBaden-W%C3%BCrttemberg",
+		"out": "Royal Residences In Baden-W%C3%BCrttemberg"
+	}, {
+		"in": "http://dbpedia.org/class/yago/HistoryMuseumsInGermany",
+		"out": "History Museums In Germany"
+	}, {
+		"in": "http://dbpedia.org/class/yago/PhysicalEntity100001930",
+		"out": "Physical Entity"
+	}, {
+		"in": "http://dbpedia.org/class/yago/YagoGeoEntity",
+		"out": "Yago Geo Entity"
+	}, {
+		"in": "http://dbpedia.org/class/yago/MuseumsOfAncientRome",
+		"out": "Museums Of Ancient Rome"
+	}, {
+		"in": "http://dbpedia.org/class/yago/Depository103177349",
+		"out": "Depository"
+	}, {
+		"in": "http://dbpedia.org/class/yago/Artifact100021939",
+		"out": "Artifact"
+	}, {
+		"in": "http://dbpedia.org/class/yago/GeographicPoint108578706",
+		"out": "Geographic Point"
+	}, {
+		"in": "http://dbpedia.org/class/yago/Museum103800563",
+		"out": "Museum"
+	}, {
+		"in": "http://dbpedia.org/class/yago/YagoLegalActorGeo",
+		"out": "Yago Legal Actor Geo"
+	}, {
+		"in": "http://dbpedia.org/class/yago/YagoPermanentlyLocatedEntity",
+		"out": "Yago Permanently Located Entity"
+	}, {
+		"in": "http://dbpedia.org/class/yago/Address108491027",
+		"out": Address"
+	}, {
+		"in": "http://dbpedia.org/class/yago/Facility103315023",
+		"out": "Facility"
+	}, {
+		"in": "http://dbpedia.org/class/yago/Location100027167",
+		"out": "Location"
+	}, {
+		"in": "http://dbpedia.org/class/yago/Point108620061",
+		"out": "Point"
+	}, {
+		"in": "http://dbpedia.org/class/yago/MuseumsInBaden-W%C3%BCrttemberg",
+		"out": "Museums In Baden-W%C3%BCrttemberg"
+	}, {
+		"in": "http://dbpedia.org/class/yago/Residence108558963",
+		"out": "Residence"
+	}, {
+		"in": "http://www.opengis.net/gml/_Feature",
+		"out": "Feature"
+	}, {
+		"in": "http://dbpedia.org/class/yago/Object100002684",
+		"out": "Object"
+	}, {
+		"in": "http://dbpedia.org/class/yago/Whole100003553",
+		"out": "Whole"
+	}
+]
