@@ -39,6 +39,8 @@ public class SemPoi extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/json");
 		PrintWriter writer = response.getWriter();
 		try {
 			System.out.println("Searching for " + request.getParameter("city"));
