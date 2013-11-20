@@ -1,9 +1,11 @@
 package de.unima.sempoi.server.adapter.processing;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import de.unima.sempoi.server.model.dbpedia.DbpediaSight;
 import de.unima.sempoi.server.model.export.City;
@@ -43,6 +45,12 @@ public class Merger {
 		}
 		
 		city.setSights(sights);
+		
+		Set<String> types = new HashSet<String>();
+		for(Sight sight : sights) {
+			types.addAll(sight.getTypes());
+		}
+		city.setTypes(types);
 		
 		StringBuffer in = new StringBuffer("");
 		String separator = "";

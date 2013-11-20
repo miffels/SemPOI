@@ -23,9 +23,8 @@ public class TypesTest {
 				new TypeToken<List<TestType>>(){}.getType());
 		
 		for(TestType type : data) {
-			System.out.println(Types.cleanTypeName(type.getIn()));
-//			assertEquals("It should clean the type names properly",
-//					type.getOut(), Types.cleanTypeName(type.getIn()));
+			assertEquals("It should clean the type names properly",
+					type.getOut(), Types.cleanTypeName(type.getIn()));
 		}
 	}
 

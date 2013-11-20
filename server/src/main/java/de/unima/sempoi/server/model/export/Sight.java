@@ -1,5 +1,6 @@
 package de.unima.sempoi.server.model.export;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -14,8 +15,7 @@ public class Sight extends Poi {
 	@SuppressWarnings("unused")
 	private String wikiUrl;
 	
-	@SuppressWarnings("unused")
-	private Set<String> types;
+	private Set<String> types = new HashSet<String>();
 
 	public void setWikiUrl(String wikiUrl) {
 		this.wikiUrl = wikiUrl;
@@ -33,4 +33,8 @@ public class Sight extends Poi {
 		this.types = types;
 	}
 
+	public Set<String> getTypes() {
+		return types;
+	}
+	
 }

@@ -4,7 +4,7 @@
 		"out": "Ethnographic Museums In Germany"
 	}, {
 		"in": "http://dbpedia.org/class/yago/RoyalResidencesInBaden-W%C3%BCrttemberg",
-		"out": "Royal Residences In Baden-W%C3%BCrttemberg"
+		"out": "Royal Residences In Baden-Württemberg"
 	}, {
 		"in": "http://dbpedia.org/class/yago/HistoryMuseumsInGermany",
 		"out": "History Museums In Germany"
@@ -37,7 +37,7 @@
 		"out": "Yago Permanently Located Entity"
 	}, {
 		"in": "http://dbpedia.org/class/yago/Address108491027",
-		"out": Address"
+		"out": "Address"
 	}, {
 		"in": "http://dbpedia.org/class/yago/Facility103315023",
 		"out": "Facility"
@@ -49,7 +49,7 @@
 		"out": "Point"
 	}, {
 		"in": "http://dbpedia.org/class/yago/MuseumsInBaden-W%C3%BCrttemberg",
-		"out": "Museums In Baden-W%C3%BCrttemberg"
+		"out": "Museums In Baden-Württemberg"
 	}, {
 		"in": "http://dbpedia.org/class/yago/Residence108558963",
 		"out": "Residence"
@@ -62,5 +62,41 @@
 	}, {
 		"in": "http://dbpedia.org/class/yago/Whole100003553",
 		"out": "Whole"
+	}, 	{
+		"in": "http://dbpedia.org/ontology/Museum",
+		"out": "Museum"
+	}, {
+		"in": "http://schema.org/Place",
+		"out": "Place"
+	}, {
+		"in": "http://dbpedia.org/ontology/Building",
+		"out": "Building"
+	}, {
+		"in": "http://schema.org/Museum",
+		"out": "Museum"
+	}, {
+		"in": "http://dbpedia.org/ontology/Place",
+		"out": "Place"
+	}, {
+		"in": "http://dbpedia.org/ontology/ArchitecturalStructure",
+		"out": "Architectural Structure"
+	}, {
+		"in": "http://umbel.org/umbel/rc/LocationUnderspecified",
+		"out": "Location Underspecified"
+	}, {
+		"in": "http://dbpedia.org/ontology/Settlement",
+		"out": "Settlement"
+	}, {
+		"in": "http://umbel.org/umbel/rc/Building",
+		"out": "Building"
+	}, {
+		"in": "http://dbpedia.org/ontology/ReligiousBuilding",
+		"out": "Religious Building"
+	}, {
+		"in": "http://dbpedia.org/ontology/PopulatedPlace",
+		"out": "Populated Place"
+	}, {
+		"in": "http://www.w3.org/2002/07/owl#Thing",
+		"out": "Thing"
 	}
 ]

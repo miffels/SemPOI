@@ -41,6 +41,7 @@ public class SemPoi extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter writer = response.getWriter();
 		try {
+			System.out.println("Searching for " + request.getParameter("city"));
 			Set<FreebaseCity> cities = new FreebaseAdapter().readSightsOfCity(request.getParameter("city"));
 			System.out.println("Got " + cities.size() + " cities from Freebase.");
 			ParallelDbpediaAdapter dbpediaAdapter = new ParallelDbpediaAdapter();

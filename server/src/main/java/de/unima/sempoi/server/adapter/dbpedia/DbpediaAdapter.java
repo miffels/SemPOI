@@ -27,6 +27,8 @@ public class DbpediaAdapter implements Callable<Map<String, DbpediaSight>> {
 	public Map<String, DbpediaSight> query() {
 		String queryString = Dbpedia.getQuery(sightNames);
 		
+		System.out.println(queryString);
+		
 		Query query = null;
 		try {
 			query = QueryFactory.create(queryString);

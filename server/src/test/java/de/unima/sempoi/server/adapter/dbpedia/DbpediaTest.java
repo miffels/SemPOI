@@ -8,80 +8,90 @@ import java.util.Set;
 
 import org.junit.Test;
 
-import de.unima.sempoi.server.adapter.dbpedia.Dbpedia;
-
 public class DbpediaTest {
 	
-//	@Test
-//	public void testQuery() {
-//		Set<String> sightNames = new HashSet<String>(Arrays.asList("A", "B"));
-//		
-//		assertEquals("it should assemble the predicates properly",
-//				"PREFIX dbpedia2: <http://dbpedia.org/resource/>\n" +
-//				"PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n\n" +
-//
-//				"SELECT *\n" +
-//				"WHERE {\n" +
-//				"{\n" +
-//						"	?s rdfs:label \"A\"@en.\n" +
-//						"	?s rdfs:label ?l.\n" +
-//						"	?s rdfs:comment ?c.\n" +
-//						"	OPTIONAL {?s dbpedia2:hasPhotoCollection ?p}\n" +
-//						"	FILTER(STRSTARTS(STR(?s), \"http://dbpedia.org/resource\"))\n" +
-//						"	FILTER(LANGMATCHES(LANG(?l), \"en\"))\n" +
-//						"	FILTER(LANGMATCHES(LANG(?c), \"en\"))\n" +
-//					"} UNION {\n" +
-//						"	?s rdfs:label \"B\"@en.\n" +
-//						"	?s rdfs:label ?l.\n" +
-//						"	?s rdfs:comment ?c.\n" +
-//						"	OPTIONAL {?s dbpedia2:hasPhotoCollection ?p}\n" +
-//						"	FILTER(STRSTARTS(STR(?s), \"http://dbpedia.org/resource\"))\n" +
-//						"	FILTER(LANGMATCHES(LANG(?l), \"en\"))\n" +
-//						"	FILTER(LANGMATCHES(LANG(?c), \"en\"))\n" +
-//				"}\n}",
-//				Dbpedia.getQuery(sightNames));
-//	}
-//	
-//	@Test
-//	public void testPredicate() {
-//		String sightName = "A";
-//		
-//		assertEquals("it should assemble the predicates properly",
-//				"{\n" +
-//					"	?s rdfs:label \"A\"@en.\n" +
-//					"	?s rdfs:label ?l.\n" +
-//					"	?s rdfs:comment ?c.\n" +
-//					"	OPTIONAL {?s dbpedia2:hasPhotoCollection ?p}\n" +
-//					"	FILTER(STRSTARTS(STR(?s), \"http://dbpedia.org/resource\"))\n" +
-//					"	FILTER(LANGMATCHES(LANG(?l), \"en\"))\n" +
-//					"	FILTER(LANGMATCHES(LANG(?c), \"en\"))\n" +
-//				"}",
-//				Dbpedia.getPredicate(sightName));
-//	}
-//	
-//	@Test
-//	public void testWhereClause() {
-//		Set<String> sightNames = new HashSet<String>(Arrays.asList("A", "B"));
-//		
-//		assertEquals("it should assemble the predicates properly",
-//				"{\n" +
-//					"	?s rdfs:label \"A\"@en.\n" +
-//					"	?s rdfs:label ?l.\n" +
-//					"	?s rdfs:comment ?c.\n" +
-//					"	OPTIONAL {?s dbpedia2:hasPhotoCollection ?p}\n" +
-//					"	FILTER(STRSTARTS(STR(?s), \"http://dbpedia.org/resource\"))\n" +
-//					"	FILTER(LANGMATCHES(LANG(?l), \"en\"))\n" +
-//					"	FILTER(LANGMATCHES(LANG(?c), \"en\"))\n" +
-//				"} UNION {\n" +
-//					"	?s rdfs:label \"B\"@en.\n" +
-//					"	?s rdfs:label ?l.\n" +
-//					"	?s rdfs:comment ?c.\n" +
-//					"	OPTIONAL {?s dbpedia2:hasPhotoCollection ?p}\n" +
-//					"	FILTER(STRSTARTS(STR(?s), \"http://dbpedia.org/resource\"))\n" +
-//					"	FILTER(LANGMATCHES(LANG(?l), \"en\"))\n" +
-//					"	FILTER(LANGMATCHES(LANG(?c), \"en\"))\n" +
-//				"}",
-//				Dbpedia.getWhereClause(sightNames));
-//	}
+	@Test
+	public void testQuery() {
+		Set<String> sightNames = new HashSet<String>(Arrays.asList("A", "B"));
+		
+		assertEquals("it should assemble the predicates properly",
+				"PREFIX dbpedia2: <http://dbpedia.org/property/>\n" +
+				"PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n" +
+				"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
+				"PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n\n" +
+
+				"SELECT *\n" +
+				"WHERE {\n" +
+					"{\n" +
+						"	?sight rdfs:label \"A\"@en.\n" +
+						"	?sight rdfs:label ?label.\n" +
+						"	?sight rdfs:comment ?comment.\n" +
+						"	?sight rdf:type ?type.\n" +
+						"	OPTIONAL {?sight dbpedia2:hasPhotoCollection ?photos}\n" +
+						"	OPTIONAL {?sight foaf:isPrimaryTopicOf ?wikiLink}\n" +
+						"	FILTER(STRSTARTS(STR(?sight), \"http://dbpedia.org/resource\"))\n" +
+						"	FILTER(LANGMATCHES(LANG(?label), \"en\"))\n" +
+						"	FILTER(LANGMATCHES(LANG(?comment), \"en\"))\n" +
+					"} UNION {\n" +
+						"	?sight rdfs:label \"B\"@en.\n" +
+						"	?sight rdfs:label ?label.\n" +
+						"	?sight rdfs:comment ?comment.\n" +
+						"	?sight rdf:type ?type.\n" +
+						"	OPTIONAL {?sight dbpedia2:hasPhotoCollection ?photos}\n" +
+						"	OPTIONAL {?sight foaf:isPrimaryTopicOf ?wikiLink}\n" +
+						"	FILTER(STRSTARTS(STR(?sight), \"http://dbpedia.org/resource\"))\n" +
+						"	FILTER(LANGMATCHES(LANG(?label), \"en\"))\n" +
+						"	FILTER(LANGMATCHES(LANG(?comment), \"en\"))\n" +
+				"}\n}",
+				Dbpedia.getQuery(sightNames));
+	}
+	
+	@Test
+	public void testPredicate() {
+		String sightName = "A";
+		
+		assertEquals("it should assemble the predicates properly",
+				"{\n" +
+					"	?sight rdfs:label \"A\"@en.\n" +
+					"	?sight rdfs:label ?label.\n" +
+					"	?sight rdfs:comment ?comment.\n" +
+					"	?sight rdf:type ?type.\n" +
+					"	OPTIONAL {?sight dbpedia2:hasPhotoCollection ?photos}\n" +
+					"	OPTIONAL {?sight foaf:isPrimaryTopicOf ?wikiLink}\n" +
+					"	FILTER(STRSTARTS(STR(?sight), \"http://dbpedia.org/resource\"))\n" +
+					"	FILTER(LANGMATCHES(LANG(?label), \"en\"))\n" +
+					"	FILTER(LANGMATCHES(LANG(?comment), \"en\"))\n" +
+				"}",
+				Dbpedia.getPredicate(sightName));
+	}
+	
+	@Test
+	public void testWhereClause() {
+		Set<String> sightNames = new HashSet<String>(Arrays.asList("A", "B"));
+		
+		assertEquals("it should assemble the predicates properly",
+				"{\n" +
+						"	?sight rdfs:label \"A\"@en.\n" +
+						"	?sight rdfs:label ?label.\n" +
+						"	?sight rdfs:comment ?comment.\n" +
+						"	?sight rdf:type ?type.\n" +
+						"	OPTIONAL {?sight dbpedia2:hasPhotoCollection ?photos}\n" +
+						"	OPTIONAL {?sight foaf:isPrimaryTopicOf ?wikiLink}\n" +
+						"	FILTER(STRSTARTS(STR(?sight), \"http://dbpedia.org/resource\"))\n" +
+						"	FILTER(LANGMATCHES(LANG(?label), \"en\"))\n" +
+						"	FILTER(LANGMATCHES(LANG(?comment), \"en\"))\n" +
+					"} UNION {\n" +
+						"	?sight rdfs:label \"B\"@en.\n" +
+						"	?sight rdfs:label ?label.\n" +
+						"	?sight rdfs:comment ?comment.\n" +
+						"	?sight rdf:type ?type.\n" +
+						"	OPTIONAL {?sight dbpedia2:hasPhotoCollection ?photos}\n" +
+						"	OPTIONAL {?sight foaf:isPrimaryTopicOf ?wikiLink}\n" +
+						"	FILTER(STRSTARTS(STR(?sight), \"http://dbpedia.org/resource\"))\n" +
+						"	FILTER(LANGMATCHES(LANG(?label), \"en\"))\n" +
+						"	FILTER(LANGMATCHES(LANG(?comment), \"en\"))\n" +
+				"}",
+				Dbpedia.getWhereClause(sightNames));
+	}
 
 }

@@ -58,6 +58,8 @@ public class FreebaseAdapter {
 		city = city.replaceAll("\"", "").replaceAll("\\\\", "");
 		String query = String.format(QUERY_TEMPLATE, city);
 		
+		System.out.println(query);
+		
 		HttpTransport httpTransport = new NetHttpTransport();
 		HttpRequestFactory requestFactory = httpTransport.createRequestFactory();
 		GenericUrl url = new GenericUrl("https://www.googleapis.com/freebase/v1/mqlread");
