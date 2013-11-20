@@ -1,4 +1,4 @@
-package de.unima.sempoi.server.adapter.processing;
+package de.unima.sempoi.server.processing;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -67,7 +67,8 @@ public class Merger {
 	}
 	
 	private String escape(String s) {
-		return StringEscapeUtils.escapeHtml4(s);
+//		return StringEscapeUtils.escapeHtml4(s);
+		return s;
 	}
 	
 	private Set<String> escape(Set<String> c) {

@@ -18,9 +18,9 @@ import de.unima.sempoi.server.adapter.exception.AccessNotConfiguredException;
 import de.unima.sempoi.server.adapter.exception.ParameterException;
 import de.unima.sempoi.server.adapter.flickr.ParallelFlickrAdapter;
 import de.unima.sempoi.server.adapter.freebase.FreebaseAdapter;
-import de.unima.sempoi.server.adapter.processing.Merger;
 import de.unima.sempoi.server.model.dbpedia.DbpediaSight;
 import de.unima.sempoi.server.model.freebase.FreebaseCity;
+import de.unima.sempoi.server.processing.Merger;
 
 /**
  * Servlet implementation class SemPOI
@@ -53,6 +53,7 @@ public class SemPoi extends HttpServlet {
 			System.out.println("Got " + count + " sights from Dbpedia.");
 			new ParallelFlickrAdapter().loadImagesFor(sights);
 			System.out.println("Images loaded from Flickr.");
+			System.out.println(new Gson().toJson(new Merger().merge(sights)));
 			writer.write(new Gson().toJson(new Merger().merge(sights)));
 		} catch (ParameterException e) {
 			response.setStatus(400);
