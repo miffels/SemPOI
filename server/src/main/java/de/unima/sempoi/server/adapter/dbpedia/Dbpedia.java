@@ -23,6 +23,7 @@ public class Dbpedia {
 			"	FILTER(STRSTARTS(STR(?sight), \"http://dbpedia.org/resource\"))\n" +
 			"	FILTER(LANGMATCHES(LANG(?label), \"en\"))\n" +
 			"	FILTER(LANGMATCHES(LANG(?comment), \"en\"))\n" +
+			"	MINUS{[] rdfs:subClassOf ?type}\n" +
 			"}";
 	
 	
