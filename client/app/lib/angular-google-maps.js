@@ -27,20 +27,20 @@
  * @author Nicolas Laplante https://plus.google.com/108189012221374960701
  */
 
-(function () {
-  
+ (function () {
+
   "use strict";
   
   /*
    * Utility functions
    */
-  
+
   /**
    * Check if 2 floating point numbers are equal
    * 
    * @see http://stackoverflow.com/a/588014
    */
-  function floatEqual (f1, f2) {
+   function floatEqual (f1, f2) {
     return (Math.abs(f1 - f2) < 0.000001);
   }
   
@@ -48,20 +48,20 @@
    * Create the model in a self-contained class where map-specific logic is 
    * done. This model will be used in the directive.
    */
-  
-  var MapModel = (function () {
-    
+
+   var MapModel = (function () {
+
     var _defaults = { 
-        zoom: 8,
-        draggable: false,
-        container: null
-      };
+      zoom: 8,
+      draggable: false,
+      container: null,
+    };
     
     /**
      * 
      */
-    function PrivateMapModel(opts) {
-      
+     function PrivateMapModel(opts) {
+
       var _instance = null,
         _markers = [],  // caches the instances of google.maps.Marker
         _handlers = [], // event handlers
@@ -69,24 +69,26 @@
         o = angular.extend({}, _defaults, opts),
         that = this,
         currentInfoWindow = null;
-      
-      this.center = opts.center;
-      this.zoom = o.zoom;
-      this.draggable = o.draggable;
-      this.dragging = false;
-      this.selector = o.container;
-      this.markers = [];
-      this.options = o.options;
-      
-      this.draw = function () {
-        
-        if (that.center == null) {
+
+        this.center = opts.center;
+        this.zoom = o.zoom;
+        this.draggable = o.draggable;
+        this.dragging = false;
+        this.selector = o.container;
+        this.markers = [];
+        this.options = o.options;
+
+        var directionsDisplay = new google.maps.DirectionsRenderer();
+
+        this.draw = function () {
+
+          if (that.center == null) {
           // TODO log error
           return;
         }
         
         if (_instance == null) {
-          
+
           // Create a new map instance
           
           _instance = new google.maps.Map(that.selector, angular.extend(that.options, {
@@ -95,55 +97,56 @@
             draggable: that.draggable,
             mapTypeId : google.maps.MapTypeId.ROADMAP
           }));
+          directionsDisplay.setMap(_instance);
           
           google.maps.event.addListener(_instance, "dragstart",
-              
-              function () {
-                that.dragging = true;
-              }
-          );
+
+            function () {
+              that.dragging = true;
+            }
+            );
           
           google.maps.event.addListener(_instance, "idle",
-              
-              function () {
-                that.dragging = false;
-              }
-          );
+
+            function () {
+              that.dragging = false;
+            }
+            );
           
           google.maps.event.addListener(_instance, "drag",
-              
-              function () {
-                that.dragging = true;   
-              }
-          );  
+
+            function () {
+              that.dragging = true;   
+            }
+            );  
           
           google.maps.event.addListener(_instance, "zoom_changed",
-              
-              function () {
-                that.zoom = _instance.getZoom();
-                that.center = _instance.getCenter();
-              }
-          );
+
+            function () {
+              that.zoom = _instance.getZoom();
+              that.center = _instance.getCenter();
+            }
+            );
           
           google.maps.event.addListener(_instance, "center_changed",
-              
-              function () {
-                that.center = _instance.getCenter();
-              }
-          );
+
+            function () {
+              that.center = _instance.getCenter();
+            }
+            );
           
           // Attach additional event listeners if needed
           if (_handlers.length) {
-            
+
             angular.forEach(_handlers, function (h, i) {
-              
+
               google.maps.event.addListener(_instance, 
-                  h.on, h.handler);
+                h.on, h.handler);
             });
           }
         }
         else {
-          
+
           // Refresh the existing instance
           google.maps.event.trigger(_instance, "resize");
           
@@ -151,74 +154,78 @@
           
           if (!floatEqual(instanceCenter.lat(), that.center.lat())
             || !floatEqual(instanceCenter.lng(), that.center.lng())) {
-              _instance.setCenter(that.center);
-          }
-        
-          if (_instance.getZoom() != that.zoom) {
-            _instance.setZoom(that.zoom);
-          }          
-        }
-      };
-      
-      this.fit = function () {
-        if (_instance && _markers.length) {
-          
-          var bounds = new google.maps.LatLngBounds();
-          
-          angular.forEach(_markers, function (m, i) {
-            bounds.extend(m.getPosition());
-          });
-          
-          _instance.fitBounds(bounds);
-        }
-      };
-      
-      this.on = function(event, handler) {
-        _handlers.push({
-          "on": event,
-          "handler": handler
-        });
-      };
-      
-      this.addMarker = function (lat, lng, icon, infoWindowContent, onClick, label , url,
-          thumbnail ) {
-        
-        if (that.findMarker(lat, lng) != null) {
-          return;
+            _instance.setCenter(that.center);
         }
         
-        var marker = new google.maps.Marker({
-          position: new google.maps.LatLng(lat, lng),
-          map: _instance,
-          icon: icon
-        });
-		
-		if(typeof onClick == 'function'){
-			google.maps.event.addListener(marker, 'click', onClick);
-		}
-        
-        if (label) {
-          
-        }
-        
-        if (url) {
-          
-        }
+        if (_instance.getZoom() != that.zoom) {
+          _instance.setZoom(that.zoom);
+        }          
+      }
+    };
 
-        if (infoWindowContent != null) {
-          var infoWindow = new google.maps.InfoWindow({
-            content: infoWindowContent
-          });
+    this.fit = function () {
+      if (_instance && _markers.length) {
 
-          google.maps.event.addListener(marker, 'click', function() {
-            if (currentInfoWindow != null) {
-              currentInfoWindow.close();
-            }
-            infoWindow.open(_instance, marker);
-            currentInfoWindow = infoWindow;
-          });
+        var bounds = new google.maps.LatLngBounds();
+
+        angular.forEach(_markers, function (m, i) {
+          bounds.extend(m.getPosition());
+        });
+
+        _instance.fitBounds(bounds);
+      }
+    };
+
+    this.on = function(event, handler) {
+      _handlers.push({
+        "on": event,
+        "handler": handler
+      });
+    };
+
+    this.addRoute = function(route){
+      directionsDisplay.setDirections(route);
+    };
+
+    this.addMarker = function (lat, lng, icon, infoWindowContent, onClick, label , url,
+      thumbnail ) {
+
+      if (that.findMarker(lat, lng) != null) {
+        return;
+      }
+
+      var marker = new google.maps.Marker({
+        position: new google.maps.LatLng(lat, lng),
+        map: _instance,
+        icon: icon
+      });
+
+      if(typeof onClick == 'function'){
+       google.maps.event.addListener(marker, 'click', onClick);
+     }
+
+     if (label) {
+
+     }
+
+     if (url) {
+
+     }
+
+     if (infoWindowContent != null) {
+      var infoWindow = new google.maps.InfoWindow({
+        content: infoWindowContent
+      });
+
+      google.maps.event.addListener(marker, 'click', function() {
+        if (currentInfoWindow != null) {
+          currentInfoWindow.close();
         }
-        
+        infoWindow.open(_instance, marker);
+        currentInfoWindow = infoWindow;
+      });
+    }
+
         // Cache marker 
         _markers.unshift(marker);
         
@@ -232,7 +239,7 @@
           "label": label,
           "url": url,
           "thumbnail": thumbnail,
-		  "onClick": onClick
+          "onClick": onClick
         });
         
         // Return marker instance
@@ -283,14 +290,14 @@
       };
       
       this.removeMarkers = function (markerInstances) {
-        
+
         var s = this;
         
         angular.forEach(markerInstances, function (v, i) {
           var pos = v.getPosition(),
-            lat = pos.lat(),
-            lng = pos.lng(),
-            index = s.findMarkerIndex(lat, lng);
+          lat = pos.lat(),
+          lng = pos.lng(),
+          index = s.findMarkerIndex(lat, lng);
           
           // Remove from local arrays
           _markers.splice(index, 1);
@@ -305,7 +312,7 @@
     // Done
     return PrivateMapModel;
   }());
-  
+
   // End model
   
   // Start Angular directive
@@ -315,11 +322,11 @@
   /**
    * Map directive
    */
-  googleMapsModule.directive("googleMap", ["$log", "$timeout", "$filter", function ($log, $timeout, 
-      $filter) {
+   googleMapsModule.directive("googleMap", ["$log", "$timeout", "$filter", function ($log, $timeout, 
+    $filter) {
 
     var controller = function ($scope, $element) {
-      
+
       var _m = $scope.map;
       
       self.addInfoWindow = function (lat, lng, content) {
@@ -343,27 +350,28 @@
         zoom: "=zoom", // required
         refresh: "&refresh", // optional
         windows: "=windows", // optional
-        events: "=events"
+        events: "=events",
+        directions: "=directions"
       },
       controller: controller,      
       link: function (scope, element, attrs, ctrl) {
-        
+
         // Center property must be specified and provide lat & 
         // lng properties
         if (!angular.isDefined(scope.center) || 
-            (!angular.isDefined(scope.center.latitude) || 
-                !angular.isDefined(scope.center.longitude))) {
+          (!angular.isDefined(scope.center.latitude) || 
+            !angular.isDefined(scope.center.longitude))) {
         	
           $log.error("angular-google-maps: could not find a valid center property");          
-          return;
-        }
-        
-        if (!angular.isDefined(scope.zoom)) {
-        	$log.error("angular-google-maps: map zoom property not set");
-        	return;
-        }
-        
-        angular.element(element).addClass("angular-google-map");
+        return;
+      }
+
+      if (!angular.isDefined(scope.zoom)) {
+       $log.error("angular-google-maps: map zoom property not set");
+       return;
+     }
+
+     angular.element(element).addClass("angular-google-map");
 
         // Parse options
         var opts = {options: {}};
@@ -378,40 +386,40 @@
           draggable: attrs.draggable == "true",
           zoom: scope.zoom
         }));       
-      
+
         _m.on("drag", function () {
-          
+
           var c = _m.center;
-        
+
           $timeout(function () {
-            
+
             scope.$apply(function (s) {
               scope.center.latitude = c.lat();
               scope.center.longitude = c.lng();
             });
           });
         });
-      
+
         _m.on("zoom_changed", function () {
-          
+
           if (scope.zoom != _m.zoom) {
-            
+
             $timeout(function () {
-              
+
               scope.$apply(function (s) {
                 scope.zoom = _m.zoom;
               });
             });
           }
         });
-      
+
         _m.on("center_changed", function () {
           var c = _m.center;
-        
+
           $timeout(function () {
-            
+
             scope.$apply(function (s) {
-              
+
               if (!_m.dragging) {
                 scope.center.latitude = c.lat();
                 scope.center.longitude = c.lng();
@@ -436,7 +444,7 @@
             
             _m.on("click", function (e) {                         
               if (cm == null) {
-                
+
                 cm = {
                   latitude: e.latLng.lat(),
                   longitude: e.latLng.lng() 
@@ -477,9 +485,9 @@
         
         // Markers
         scope.$watch("markers", function (newValue, oldValue) {
-          
+
           $timeout(function () {
-            
+
             angular.forEach(newValue, function (v, i) {
               if (!_m.hasMarker(v.latitude, v.longitude)) {
                 _m.addMarker(v.latitude, v.longitude, v.icon, v.infoWindow, v.onClick);
@@ -494,13 +502,13 @@
               // If not found, then that marker has been removed form the scope.
               
               var pos = v.getPosition(),
-                lat = pos.lat(),
-                lng = pos.lng(),
-                found = false;
+              lat = pos.lat(),
+              lng = pos.lng(),
+              found = false;
               
               // Test against each marker in the scope
               for (var si = 0; si < scope.markers.length; si++) {
-                
+
                 var sm = scope.markers[si];
                 
                 if (floatEqual(sm.latitude, lat) && floatEqual(sm.longitude, lng)) {
@@ -523,10 +531,10 @@
               _m.fit();
             }
           });
-          
-        }, true);
-        
-        
+
+}, true);
+
+
         // Update map when center coordinates change
         scope.$watch("center", function (newValue, oldValue) {
           if (newValue === oldValue) {
@@ -535,7 +543,7 @@
           
           if (!_m.dragging) {
             _m.center = new google.maps.LatLng(newValue.latitude, 
-                newValue.longitude);          
+              newValue.longitude);          
             _m.draw();
           }
         }, true);
@@ -548,6 +556,14 @@
           _m.zoom = newValue;
           _m.draw();
         });
+
+        scope.$watch("directions", function (newValue, oldValue) {
+          if(typeof newValue === "undefined"){
+            return;
+          }
+          _m.addRoute(newValue);
+          _m.draw();
+        }, true);
       }
     };
   }]);  

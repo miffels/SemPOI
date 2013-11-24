@@ -1,10 +1,9 @@
-<div>
   <accordion close-others="true">
-    <accordion-group heading="{{sight.name}}" ng-repeat="sight in sights" id="{{sight.name}}" >
-    <div class="sidebar-box">
-      <p ng-click="onSightClicked(sight.name)">{{sight.description}}</p>
-      <p class="read-more"><a href="#" ng-click="onSightClicked(sight.name)" class="btn btn-mini">Read More</a></p>
-    </div>
+  	<accordion-group heading="{{sight.name}}" ng-repeat="sight in filteredSights" id="{{sight.name}}" >
+  	<div class="sidebar-box">
+  		<p ng-click="onSightClicked(sight.name)">{{sight.description}}</p>
+  		<p class="read-more"><a href="#" ng-click="onSightClicked(sight.name)" class="btn btn-mini">Read More</a></p>
+  	</div>
   </accordion-group>
-</div>
+</accordion>
 
