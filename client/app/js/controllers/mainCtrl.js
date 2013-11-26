@@ -103,6 +103,7 @@
         if (status == google.maps.DirectionsStatus.OK) {
             console.log(response);
             $scope.directions = response;
+            $scope.markers=[];
             $scope.$apply();
         }
     });
@@ -178,6 +179,7 @@ function loadDetailIntoScope(id){
 }
 
 function updateSelection(){
+    $scope.directions = null;
     var numOfSelectedItems=0;
     $scope.filteredSights=[];
     $scope.filters.map(function(filter){

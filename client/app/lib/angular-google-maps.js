@@ -185,6 +185,11 @@
 
     this.addRoute = function(route){
       directionsDisplay.setDirections(route);
+      directionsDisplay.setMap(_instance);
+    };
+
+    this.removeRoute = function(){
+      directionsDisplay.setMap(null);
     };
 
     this.addMarker = function (lat, lng, icon, infoWindowContent, onClick, label , url,
@@ -558,7 +563,8 @@
         });
 
         scope.$watch("directions", function (newValue, oldValue) {
-          if(typeof newValue === "undefined"){
+          if(typeof newValue === "undefined" || !newValue){
+            _m.removeRoute();
             return;
           }
           _m.addRoute(newValue);
