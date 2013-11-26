@@ -65,3 +65,9 @@ html {
 	border-radius: 15px;
 }
 
+i.icon-camera {
+position: relative;
+float: right;
+margin-top: 12px;
+margin-right: 3px;
+}

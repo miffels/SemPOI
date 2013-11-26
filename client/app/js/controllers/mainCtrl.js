@@ -30,7 +30,7 @@
                 else if(result.length===1){
                     setScopeValues(result[0]);
                 }else{
-                 var modalInstance = $modal.open({
+                   var modalInstance = $modal.open({
                     templateUrl: 'partials/selectCityModal.html',
                     controller: 'SelectCityCtrl',
                     resolve: {
@@ -39,14 +39,14 @@
                       }
                   }
               });
-                 modalInstance.result.then(function (selectedItem) {
+                   modalInstance.result.then(function (selectedItem) {
                     setScopeValues(selectedItem);
                 }, function () {
                     console.log('Modal dismissed at: ' + new Date());
                 });
-             }
+               }
 
-         })
+           })
             .error(function(){
                 console.log('request failed');
                 $scope.loading = false;
@@ -101,7 +101,9 @@
     }
     directionsService.route(request, function (response, status) {
         if (status == google.maps.DirectionsStatus.OK) {
+            console.log(response);
             $scope.directions = response;
+            $scope.$apply();
         }
     });
 };
@@ -131,7 +133,7 @@ function setScopeValues(sight){
 
 function setFilters(types){
     $.each( types,
-     function(index,value){ 
+       function(index,value){ 
         $scope.filters.push({
             id : index,
             count : value,
