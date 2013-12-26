@@ -46,16 +46,13 @@ public class SemPoi extends HttpServlet {
 			System.out.println("Searching for " + request.getParameter("city"));
 			Set<FreebaseCity> cities = new FreebaseAdapter().readSightsOfCity(request.getParameter("city"));
 			System.out.println("Got " + cities.size() + " cities from Freebase.");
+			
 			ParallelDbpediaAdapter dbpediaAdapter = new ParallelDbpediaAdapter();
 			Map<FreebaseCity, Map<String, DbpediaSight>> sights = dbpediaAdapter.getSightDetailsFor(cities);
-			int count = 0;
-			for(Entry<FreebaseCity, Map<String, DbpediaSight>> entry : sights.entrySet()) {
-				count += entry.getValue().size();
-			}
-			System.out.println("Got " + count + " sights from Dbpedia.");
+			System.out.println("Got " + this.countSights(sights) + " sights from Dbpedia.");
+			
 			new ParallelFlickrAdapter().loadImagesFor(sights);
 			System.out.println("Images loaded from Flickr.");
-			System.out.println(new Gson().toJson(new Merger().merge(sights)));
 			writer.write(new Gson().toJson(new Merger().merge(sights)));
 		} catch (ParameterException e) {
 			response.setStatus(400);
@@ -64,6 +61,14 @@ public class SemPoi extends HttpServlet {
 			response.setStatus(500);
 			writer.write(e.getMessage());
 		}
+	}
+	
+	private int countSights(Map<FreebaseCity, Map<String, DbpediaSight>> sights) {
+		int count = 0;
+		for(Entry<FreebaseCity, Map<String, DbpediaSight>> entry : sights.entrySet()) {
+			count += entry.getValue().size();
+		}
+		return count;
 	}
 
 	/**
